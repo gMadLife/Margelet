@@ -6,6 +6,8 @@
     <title>Node chat</title>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
     {% if not error %}
         <script src='/socket.io/socket.io.js'></script>
     {% endif %}
@@ -60,6 +62,21 @@
                 </div>
                 <input type="submit" value="submit" class="btn btn-primary btn-block">
             </form>
+            <hr>
+            {% if files %}
+                <p>{{files}}</p>
+                {% for item in files %}
+                    <div class="card card-body mb3">
+                        {% if file.isImage %}
+                            <img src ="image/{{file.filename}}" alt ="">
+                        {% else %}
+                            {{ file.filename }}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No files</p>
+            {% endif %}
         </div>
         <script src="/assets/js/auth.js"></script>
     {% endif %}
