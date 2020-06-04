@@ -16,7 +16,7 @@
         <!--<h3 class="error"> {{ error }} </h3>-->
         <div class="login-page">
             <div class="form">
-                <div style="margin-top: 18px;">
+                <div>
                     <form class="register" method="post" style="display: none;">
                         <input type="text" name="username" placeholder="Username"/>
                         <input type="password" name="password" placeholder="Password"/>
@@ -24,10 +24,12 @@
                         <p class="message">Already registered? <a href="#">Sign In</a></p>
                     </form>
                     <form class="login" method="post">
+                        <div style="font-size: 2rem" class="font-weight-light align-middle">Sign In</div>
+                        <br>
                         <input type="text" name="username" placeholder="Username"/>
                         <input type="password" name="password" placeholder="Password"/>
                         <button type="submit">LET ME IN</button>
-                        <p class="message">Not registered? <a href="#">Create an account</a></p>
+                        <!--<p class="message">Not registered? <a href="#">Create an account</a></p>-->
                     </form>
                 </div>
             </div>
