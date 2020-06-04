@@ -7,9 +7,9 @@
 body {
     /*background: rgb(110,0,93);
     background: linear-gradient(to top left, rgba(110,0,93,1) 0%, rgba(208,114,213,1) 50%, rgba(255,255,255,1) 100%);*/
-    background:  rgb(143, 54, 129);
-    background: -webkit-linear-gradient(to top left, #0f2862, #091f36);
-    background: linear-gradient(to top left,  #0f2862, #091f36);
+    background: #091f36;
+    background: -webkit-linear-gradient(to left, #0f2862, #091f36);
+    background: linear-gradient(to left,  #0f2862, #091f36);
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

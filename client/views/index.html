@@ -13,7 +13,7 @@
 </head>
 <body>
     {% if error %}
-        <h3 class="error"> {{ error }} </h3>
+        <!--<h3 class="error"> {{ error }} </h3>-->
         <div class="login-page">
             <div class="form">
                 <div style="margin-top: 18px;">
@@ -38,7 +38,9 @@
             <div class="chat">
                 <div class="chat-header clearfix">
                     <div class="chat-about">
-                        <div class="chat-num-users">Hello, <span id="name">{{ username }}</span></div>
+                        <div class="chat-num-users">
+                            <span id="name">{{ username }}</span>
+                        </div>
                     </div>
                     <div class="controls">
                         <a href="#" class="logout-btn">Logout</a>
@@ -61,6 +63,12 @@
                 </div>
                 <input type="submit" value="submit" class="btn btn-primary btn-block">
             </form>
+            <script>
+                $('input[type="file"]').change(function(e){
+                var fileName = e.target.files[0].name;
+                $('.custom-file-label').html(fileName);
+                });
+            </script>
             <hr>
             {% if files %}
                 <p>{{files}}</p>
