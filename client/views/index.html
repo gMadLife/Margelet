@@ -36,57 +36,98 @@
         </div>
         <script src="/assets/js/unauth.js"></script>
     {% else %}
-        <div class="container clearfix">
-            <div class="chat">
-                <div class="chat-header clearfix">
-                    <div class="chat-about">
-                        <div class="chat-num-users">
-                            <span id="name">{{ username }}</span>
+    <div class="container-fluid clearfix">
+        <div class="row" style=" height: 100vh;">
+            <div class="col-md-9">
+                <div style="display: table;">
+                    <div style="display: table-cell; width: 30vw"> <!-- left table -->
+                        <div class="row"> <!-- logo and name -->
+                            <div class="col-md-12 ">
+                            <center>
+                             <img src="./assets/images/logo.png">
+                             <span class="font-weight-light d-none d-lg-inline align-middle" style="font-size: 2rem; color: #ffffff;">
+                                Margelet
+                            </span>
+                            </center>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-3"> <!-- username plank -->
+                            <div class="col-lg-12">
+                                <span id="name" class="align-middle" style="color: #ffffff;">{{ username }}</span>
+                                &emsp;
+                                <a href="#" class="btn btn-danger">Logout</a>
+                            </div>
+                        </div>
+
+                        <div class="row ml-1 mr-3 mt-3" style="overflow: scroll; height: 80vh;"> <!-- chats menu -->
+                            <button class="btn btn-primary text-left mt-2 w-100" style="height:fit-content">chat 1</button>
+             
                         </div>
                     </div>
-                    <div class="controls">
-                        <a href="#" class="logout-btn">Logout</a>
+
+                    <div class="wider" style="display:table-cell; background-color: yellow; overflow: hidden; width: 50vw;"> <!-- Main middle table in center -->
+                        <div class=" clearfix">
+                            <div class="chat">
+                                <div class="chat-header clearfix">
+                                    <div class="chat-about">
+                                        about
+                                    </div>
+                                </div>
+
+                                <div class="chat-history wider" style="word-wrap: break-word; width: 50vw">
+                                    <ul>
+                                    </ul>
+                                </div>
+                
+                                <div class="chat-message clearfix">
+                                    <textarea name="message" placeholder ="Type your message" rows="3"></textarea>
+                                    <button type="submit">Send</button>
+                                </div>
+            
+                                <form action="/upload" method="POST" enctype="multipart/form-data">
+                                    <div class="custom-file mb-3">
+                                        <input type="file" name="file" id="file" class ="custom-file-input">
+                                        <label for="file" class="custom-file-label">Choose File</label>
+                                    </div>
+                                    <input type="submit" value="submit" class="btn btn-primary btn-block">
+                                </form>
+                                
+                                <script>
+                                $('input[type="file"]').change(function(e){
+                                var fileName = e.target.files[0].name;
+                                $('.custom-file-label').html(fileName);
+                                });
+                                </script>
+                                
+                                <hr>
+                                
+                                {% if files %}
+                                    <p>{{files}}</p>
+                                    {% for item in files %}
+                                        <div class="card card-body mb3">
+                                            {% if file.isImage %}
+                                                <img src ="image/{{file.filename}}" alt ="">
+                                            {% else %}
+                                                {{ file.filename }}
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <p>No files</p>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="chat-history" style="word-wrap: break-word">
-                    <ul>
-                    </ul>
-                </div>
-
-                <div class="chat-message clearfix">
-                    <textarea name="message" placeholder ="Type your message" rows="3"></textarea>
-                    <button type="submit">Send</button>
             </div>
-            <form action="/upload" method="POST" enctype="multipart/form-data">
-                <div class="custom-file mb-3">
-                    <input type="file" name="file" id="file" class ="custom-file-input">
-                    <label for="file" class="custom-file-label">Choose File</label>
-                </div>
-                <input type="submit" value="submit" class="btn btn-primary btn-block">
-            </form>
-            <script>
-                $('input[type="file"]').change(function(e){
-                var fileName = e.target.files[0].name;
-                $('.custom-file-label').html(fileName);
-                });
-            </script>
-            <hr>
-            {% if files %}
-                <p>{{files}}</p>
-                {% for item in files %}
-                    <div class="card card-body mb3">
-                        {% if file.isImage %}
-                            <img src ="image/{{file.filename}}" alt ="">
-                        {% else %}
-                            {{ file.filename }}
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            {% else %}
-                <p>No files</p>
-            {% endif %}
+
+            <div class="col-md-3"> <!-- right table for participants -->
+                <div class="col-md-12" style="color: #ffffff;"> chat goers </div>        
+            </div>
         </div>
+    </div>
+
         <script src="/assets/js/auth.js"></script>
     {% endif %}
         

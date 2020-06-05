@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+@media screen and (max-width:767px) {
+    .wider {
+        width: 70vw !important;
+    }
+}
+
 body {
     /*background: rgb(110,0,93);
     background: linear-gradient(to top left, rgba(110,0,93,1) 0%, rgba(208,114,213,1) 50%, rgba(255,255,255,1) 100%);*/
@@ -17,7 +23,7 @@ body {
 
 .container {
     margin: 2% auto;
-    width: 760px;
+    /* width: 760px; */
     background: #444753;
 }
 
