@@ -134,7 +134,7 @@ module.exports = app => {
     gfs.files.find().toArray((err, files) => {
       //Check if files
       if (!files || files.length === 0) {
-        res.render("index.html", { username: req.user.username, files:false });
+        res.render("index.html", { username: req.user.username, files: false });
       } else {
         files.map(file => {
           if(file.contentType ==='image/jpeg' || file.contentType === 'image/png') {

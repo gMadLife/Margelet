@@ -114,11 +114,11 @@
                                 {% if files %}
                                     <p>{{files}}</p>
                                     {% for item in files %}
-                                        <div class="card card-body mb3">
-                                            {% if file.isImage %}
-                                                <img src ="image/{{file.filename}}" alt ="">
+                                        <div class="card card-body mb-3">
+                                            {% if item.isImage %}
+                                                <img src ="./image/{{item.filename}}" alt ="">
                                             {% else %}
-                                                {{ file.filename }}
+                                                {{ item.filename }}
                                             {% endif %}
                                         </div>
                                     {% endfor %}
