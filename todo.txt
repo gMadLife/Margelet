@@ -5,3 +5,8 @@ get pictures in messages
 get file links in messages
 get pinned messages
 make normal colors
+
+button chat description change to small pencil icon
+type your message height 1 line
+send message button on the right
+change submit files to not retarded
