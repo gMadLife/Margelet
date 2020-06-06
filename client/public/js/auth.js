@@ -83,9 +83,23 @@ $(document).ready(() => {
     //);
 
 
+    $(".chat-about-label button").on("click", e => {
+      e.preventDefault();
 
 
-    $(".chat-about button").on("click", e => {
+      $("button[class='btn-label']").addClass(d-none);
+      console.log("painis");
+  
+      //var selector = $("pre[name='about-label']");
+      //var messageContent = selector.val().trim();
+      //socket.emit("msg", messageContent);
+      //selector.val("");
+       
+      
+    });
+
+
+    $(".chat-about-description button").on("click", e => {
       e.preventDefault();
   
       var selector = $("textarea[name='about-text']");
@@ -93,9 +107,23 @@ $(document).ready(() => {
       if (messageContent !== "") {
         //socket.emit("msg", messageContent);
         selector.val("");
+      
       }
     });
 
 
   }
 });
+
+/*
+$(".chat-message button").on("click", e => {
+  e.preventDefault();
+
+  var selector = $("textarea[name='message']");
+  var messageContent = selector.val().trim();
+  if (messageContent !== "") {
+    socket.emit("msg", messageContent);
+    selector.val("");
+  }
+});
+*/

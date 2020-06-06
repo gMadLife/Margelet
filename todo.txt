@@ -1,0 +1,7 @@
+make js buttons in about work (code in auth.js)
+make separate private chats
+make group chats
+get pictures in messages
+get file links in messages
+get pinned messages
+make normal colors

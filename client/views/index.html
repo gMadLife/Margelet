@@ -75,16 +75,23 @@
                         </div>
                     </div>
 
-                    <div class="wider" style="display:table-cell; background-color: yellow; overflow: hidden; width: 50vw;"> <!-- Main middle table in center -->
+                    <div class="wider" style="display:table-cell; overflow: hidden; width: 50vw;"> <!-- Main middle table in center -->
                         <div class=" clearfix">
                             <div class="chat">
                                 <div class="chat-header clearfix"> <!-- about -->
                                     <div class="chat-about clearfix">
-                                        <textarea name="about-text" placeholder ="Input information about this chat" rows="3"></textarea>
-                                        <button class="wider btn btn-primary btn-about" type="submit" style="width: 50vw">
-                                            Save description</button>
-                                    
-                                        about dicks
+                                        <div name="chat-about-label">
+                                            <label class="about-name">Chat name</label>
+                                            <pre name="about-label">Chat description</pre>
+                                            <button class="wider btn btn-primary btn-label" type="submit" style="width: 50vw">
+                                                Change description</button>
+                                        </div>
+
+                                        <div class="d-none" name="chat-about-description">
+                                            <textarea name="about-text" placeholder ="Input information about this chat" rows="3"></textarea>
+                                            <button class="wider btn btn-primary btn-about" type="submit" style="width: 50vw">
+                                                Save description</button>
+                                        </div>
                                     </div>
                                 </div>
 
