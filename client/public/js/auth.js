@@ -81,5 +81,21 @@ $(document).ready(() => {
     //  { scrollTop: $(".chat-history")[0].scrollHeight },
     //  1000
     //);
+
+
+
+
+    $(".chat-about button").on("click", e => {
+      e.preventDefault();
+  
+      var selector = $("textarea[name='about-text']");
+      var messageContent = selector.val().trim();
+      if (messageContent !== "") {
+        //socket.emit("msg", messageContent);
+        selector.val("");
+      }
+    });
+
+
   }
 });

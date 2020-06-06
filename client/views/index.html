@@ -38,7 +38,7 @@
                         <input type="text" name="username" placeholder="Username"/>
                         <input type="password" name="password" placeholder="Password"/>
                         <button type="submit">LET ME IN</button>
-                        <!--<p class="message">Not registered? <a href="#">Create an account</a></p>-->
+                        <!-- <p class="message">Not registered? <a href="#">Create an account</a></p> -->
                     </form>
                 </div>
             </div>
@@ -69,27 +69,31 @@
                             </div>
                         </div>
 
-                        <div class="row ml-1 mr-3 mt-3" style="overflow: scroll; height: 80vh;"> <!-- chats menu -->
-                            <button class="btn btn-primary text-left mt-2 w-100" style="height:fit-content">chat 1</button>
-             
+                        <div class="row ml-1 mr-3 mt-3" style="overflow: auto; max-height: 80vh;"> <!-- chats menu -->
+                            <button class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">chat 1</button>
+                            <button class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">chat 2</button>
                         </div>
                     </div>
 
                     <div class="wider" style="display:table-cell; background-color: yellow; overflow: hidden; width: 50vw;"> <!-- Main middle table in center -->
                         <div class=" clearfix">
                             <div class="chat">
-                                <div class="chat-header clearfix">
-                                    <div class="chat-about">
-                                        about
+                                <div class="chat-header clearfix"> <!-- about -->
+                                    <div class="chat-about clearfix">
+                                        <textarea name="about-text" placeholder ="Input information about this chat" rows="3"></textarea>
+                                        <button class="wider btn btn-primary btn-about" type="submit" style="width: 50vw">
+                                            Save description</button>
+                                    
+                                        about dicks
                                     </div>
                                 </div>
 
-                                <div class="chat-history wider" style="word-wrap: break-word; width: 50vw">
+                                <div class="chat-history wider" style="word-wrap: break-word; width: 50vw"> <!-- messages -->
                                     <ul>
                                     </ul>
                                 </div>
                 
-                                <div class="chat-message clearfix">
+                                <div class="chat-message clearfix"> <!-- type and send area -->
                                     <textarea name="message" placeholder ="Type your message" rows="3"></textarea>
                                     <button type="submit">Send</button>
                                 </div>
