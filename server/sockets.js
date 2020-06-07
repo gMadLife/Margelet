@@ -1,6 +1,8 @@
 const MessageModel = require("./models/messages.model");
+const UploadsModel = require("./models/uploads.model");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
+const mongoose = require("mongoose");
 
 function auth(socket, next) {
   // Parse cookie
@@ -33,22 +35,37 @@ module.exports = io => {
       }
     });
 
-    socket.on("msg", (messageContent, chatName) => {
-      if (!socket.username) {
-        return;
+    socket.on("msg", (chatName, messageContent, fileContent) => {
+      if (!socket.username) return;
+
+      fileId = null;
+
+      if (fileContent != null) {
+        // Create the file in uploads
+        const file = {
+          filename: messageContent,
+          data: fileContent,
+          _id: mongoose.Types.ObjectId(),
+        };
+        
+        fileId = file._id;
+
+        UploadsModel.create(file, err => {
+          if (err) return console.error("UploadsModel", err);
+        });
       }
 
       const obj = {
         date: new Date(),
         content: messageContent,
         username: socket.username,
-        chat: chatName
+        chat: chatName,
+        file: fileId,
       };
 
       MessageModel.create(obj, err => {
-        if (err) {
-          return console.error("MessageModel", err);
-        }
+        if (err) return console.error("MessageModel", err);
+
         socket.emit("message", obj);
         socket.to("all").emit("message", obj);
       });

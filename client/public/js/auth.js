@@ -41,7 +41,7 @@ $(document).ready(() => {
     }
   });
 
-  $(".chat-message button").on("click", e => {
+  $(".chat-message button[type='submit']").on("click", e => {
     e.preventDefault();
 
     var messageBox = $("textarea[name='message']");
@@ -50,9 +50,35 @@ $(document).ready(() => {
     var chatName = $(".about-name").text();
 
     if (messageContent !== "") {
-      socket.emit("msg", messageContent, chatName);
+      socket.emit("msg", chatName, messageContent, null);
       messageBox.val("");
     }
+  });
+
+  // Attach button
+  $(".chat-message button[type='attach']").on("click", e => {
+    e.preventDefault();
+
+    var input = document.createElement('input');
+    input.type = 'file';
+
+    input.onchange = e => { 
+      var file = e.target.files[0];
+
+      var reader = new FileReader();
+      reader.readAsArrayBuffer(file);
+
+      // here we tell the reader what to do when it's done reading...
+      reader.onload = readerEvent => {
+        var content = readerEvent.target.result; // this is the content!
+        console.log(content);
+        var chatName = $(".about-name").text();
+
+        socket.emit("msg", chatName, file.name, content);
+      }
+    }
+
+    input.click();
   });
 
 ////////////////////////////////////////////////////////////////////////
@@ -106,14 +132,31 @@ $(document).ready(() => {
     message.username = encodeHTML(message.username);
     message.content = encodeHTML(message.content);
 
-    var html = `
-            <li>
-                <div class="message-data">
-                    <span class="message-data-name">${message.username}</span>
-                    <span class="message-data-time">${message.date}</span>
-                </div>
-                <div class="message my-message" dir="auto">${message.content}</div>
-            </li>`;
+    var html = null;
+
+    if (message.file != null) {
+      html = `
+      <li>
+        <div class="message-data">
+          <span class="message-data-name">${message.username}</span>
+          <span class="message-data-time">${message.date}</span>
+        </div>
+        <div class="message my-message" dir="auto">
+          <a href="./uploads/${message.file}" download="${message.content}">${message.content}</a>
+        </div>
+      </li>
+      `;
+    }
+    else {
+      html = `
+        <li>
+          <div class="message-data">
+            <span class="message-data-name">${message.username}</span>
+            <span class="message-data-time">${message.date}</span>
+          </div>
+          <div class="message my-message" dir="auto">${message.content}</div>
+        </li>`;
+    }
 
     $(html)
       .hide()

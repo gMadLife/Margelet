@@ -1,4 +1,5 @@
 const UsersModel = require("./models/users.model");
+const UploadsModel = require("./models/uploads.model");
 const _ = require("lodash");
 const config = require("./config");
 const bcrypt = require("bcrypt");
@@ -13,6 +14,7 @@ const Grid = require('gridfs-stream');
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const contentDisposition = require('content-disposition')
 
 function checkAuth(req, res, next) {
   passport.authenticate(
@@ -104,6 +106,27 @@ module.exports = app => {
       }
      // File exists
      return res.json(file);
+    });
+  });
+
+  app.get('/uploads/:filename', (req, res) => {
+    UploadsModel.findById(req.params.filename, (err, file) => {
+      if (!file) {
+        return res.status(404).json({
+          err: "No file exists",
+        });
+      }
+
+      console.log("##########" + contentDisposition(file.filename));
+
+      res.writeHead(200, {
+        'Content-Type': "application/octet-stream",
+        'Content-disposition': contentDisposition(file.filename),
+        'Content-Length': file.data.length
+      });
+      //res.send(Buffer.from(file.data, 'binary'));
+      res.write(file.data,'binary');
+      res.end(null, 'binary');
     });
   });
 
