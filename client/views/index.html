@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Margelet</title>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script> -->
+    <script src='./assets/modules/ajax/jquery/jquery.min.js'></script>
+    <script src="./assets/modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
@@ -69,29 +71,38 @@
                             </div>
                         </div>
 
-                        <div class="row ml-1 mr-3 mt-3" style="overflow: auto; max-height: 80vh;"> <!-- chats menu -->
-                            <button class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">chat 1</button>
-                            <button class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">chat 2</button>
+                        <div class="row ml-1 mt-3" style="overflow: auto; max-height: 80vh;"> <!-- chats menu -->
+                            <span style="overflow: visible; max-height: 80vh;" class="mr-3 pr-3 w-100">
+                                <button class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">chat 1</button>
+                                <button class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">chat 2</button>
+                            </span>
+                            <button type="button" class="btn btn-primary text-left mt-2 mr-5 w-100" data-toggle="modal" data-target="#myModal1">
+                                +Add new chat
+                            </button>
                         </div>
                     </div>
 
-                    <div class="wider" style="display:table-cell; overflow: hidden; width: 50vw;"> <!-- Main middle table in center -->
+                    <div class="wider" style="display:table-cell; overflow: hidden; width: 50vw; height: 100vh;"> <!-- Main middle table in center -->
                         <div class=" clearfix">
                             <div class="chat">
                                 <div class="chat-header clearfix"> <!-- about -->
                                     <div class="chat-about clearfix">
                                         <div class="chat-about-label">
-                                            <label name="about-name-label">Chat name</label>
+                                            <label name="chat-id" class="d-none">id</label>
+                                            <label name="about-name-label">Chat name</label><br>
                                             <pre name="about-label">Chat description</pre>
-                                            <button class="wider btn btn-primary btn-label" type="submit" style="width: 50vw">
-                                                Change description</button>
+                                            <button class='btn btn-primary btn-label' id="pencil" type='submit'>
+                                                <svg class='bi bi-pencil' width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+                                                    <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                                                    <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                                                  </svg></button>
                                         </div>
 
                                         <div class="d-none chat-about-description">
                                             <input type="text" name="about-name-input" class="about-name-input"></input>
                                             <textarea name="about-text" placeholder ="Input information about this chat" rows="3"></textarea>
-                                            <button class="wider btn btn-primary btn-about" type="submit" style="width: 50vw">
-                                                Save description</button>
+                                            <button class="wider btn btn-primary btn-about" type="submit" style="width: 100%">
+                                                Save changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -102,9 +113,19 @@
                                 </div>
                 
                                 <div class="chat-message clearfix"> <!-- type and send area -->
-                                    <textarea name="message" placeholder ="Type your message" rows="3"></textarea>
-                                    <button type="submit">Send</button>
-                                    <button type="attach">Attach</button>
+                                    <textarea class="d-inline" name="message" placeholder ="Type your message" rows="1"></textarea>
+                                    <button title="Send message" type="submit" class="rounded-right pb-1">
+                                        <svg class="bi bi-cursor-fill align-top" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
+                                        </svg>
+                                    </button>
+                                    <button title="Attach file" type="attach" class="rounded-left pb-1">
+                                        <svg class="bi bi-file-earmark-plus align-top" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5v-1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h5v2.5A1.5 1.5 0 0 0 10.5 6H13v2h1V6L9 1z"/>
+                                            <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
+                                            <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+                                            </svg>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -112,14 +133,75 @@
                 </div>
             </div>
 
-            <div class="col-md-3"> <!-- right table for participants -->
-                <div class="col-md-12" style="color: #ffffff;"> chat goers </div>        
+            <div class="col-md-3 mt-3"> <!-- right table for participants -->
+                <div class="col-md-12" style="color: #ffffff;">
+                    <span> 
+                        chat goers 
+                    </span>
+                    <button type="button" class="btn btn-primary text-left w-100 mt-3" data-toggle="modal" data-target="#myModal2">
+                        +Add users
+                    </button>
+                </div>        
             </div>
         </div>
     </div>
 
         <script src="/assets/js/auth.js"></script>
+
+
+<!-- popup window 1, chat -->
+    <div class="modal fade" id="myModal1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+              
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Add chat</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <input type="text" name="new-name-input" class="new-name-input" placeholder="Chat name"></input>
+                    <textarea name="new-text" placeholder ="Chat description" rows="3"></textarea>
+                </div>
+                
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+<!-- popup window 2, users-->
+    <div class="modal fade" id="myModal2">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Add user</h4>
+              <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+              Modal body..
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
     {% endif %}
-        
+
 </body>
 </html>

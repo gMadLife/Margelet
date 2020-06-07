@@ -4,12 +4,6 @@
     box-sizing: border-box;
 }
 
-@media screen and (max-width:767px) {
-    .wider {
-        width: 70vw !important;
-    }
-}
-
 body {
     /*background: rgb(110,0,93);
     background: linear-gradient(to top left, rgba(110,0,93,1) 0%, rgba(208,114,213,1) 50%, rgba(255,255,255,1) 100%);*/
@@ -142,7 +136,7 @@ body {
     padding: 20px;
 }
 .chat .chat-message textarea, .room .room-create input {
-    width: 100%;
+    width: calc(100% - 6rem);
     border: none;
     padding: 10px 20px;
     font: 14px/22px "Roboto", Arial, sans-serif;
@@ -317,7 +311,7 @@ ul {
     float: right;
     text-transform: uppercase;
     outline: 0;
-    background: #86BB71;
+    background: #007bff;
     border: 0;
     padding: 15px;
     color: #FFFFFF;
@@ -327,10 +321,12 @@ ul {
     cursor: pointer;
 }
 button:hover:enabled, button:active, button:focus {
-    background: #89c771;
+    background: #004997;
+    border-color: #007bff;
 }
 a.rooms-btn:hover:enabled, a.rooms-btn:active, a.rooms-btn:focus {
-    background: #89c771;
+    background:#004997;
+    border-color: #007bff;
 }
 a.logout-btn{
     background-color: rgb(226, 98, 92);
@@ -344,7 +340,7 @@ a.logout-btn:hover:enabled, a.logout-btn:active, a.logout-btn:focus {
     text-align: center;
 }
 .users-list li img, .chat-header img {
-    width: 60px;
+    width: 60pxs;
     height: 60px;
     border: 3px solid #676c75;
     border-radius: 50%;
@@ -393,6 +389,53 @@ button:disabled {
     display: block;
     width: 100%;
     border: none;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
+
+
+@media screen and (max-width:767px) {
+    .wider {
+        width: 70vw !important;
+    }
+    pre[name="about-label"] {
+        max-width: 65vw;
+        
+    }
+}
+
+pre[name="about-label"] {
+    max-width: 45vw;
+    display: inline;
+    word-wrap: break-word;
+}
+
+#pencil {
+    display: inline;
+    background-color: rgba( 255, 255, 255, 0.0);
+    color: slategrey;
+    border: none;
+}
+
+#pencil:hover {
+    background-color: #007bff;
+    border-color: #004792;
+    color: #FFFFFF;
+}
+
+
+textarea[name="new-text"] {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    font: 14px/22px "Roboto", Arial, sans-serif;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.new-name-input {
+    display: block;
+    width: 100%;
     padding: 0px 10px;
     margin-bottom: 10px;
 }
