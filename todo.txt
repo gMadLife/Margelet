@@ -10,3 +10,5 @@ button chat description change to small pencil icon
 type your message height 1 line
 send message button on the right
 change submit files to not retarded
+
+add chat goers

@@ -59,27 +59,38 @@ $(document).ready(() => {
   $(".chat-about-label button").on("click", e => {
     e.preventDefault();
 
-    $("button[class='btn-label']").addClass(".d-none");
-    console.log("painis");
-    var selector = $("pre[name='about-label']");
-    var messageContent = selector.text();
-    console.log(messageContent);
-    //var messageContent = selector.val();
-    //socket.emit("msg", messageContent);
-    selector.val("");
+    //get chat name from label to input
+    $("input[name='about-name-input']").val( $("label[name='about-name-label']").text() );
+    //get text from description to editor
+    $("textarea[name='about-text']").text( $("pre[name='about-label']").text() );
+    //hide label-like about
+    $(".chat-about-label").addClass("d-none");
+    //show editor-like about    
+    $(".chat-about-description").removeClass("d-none");
   });
 
 
   $(".chat-about-description button").on("click", e => {
     e.preventDefault();
 
-    var selector = $("textarea[name='about-text']");
-    var messageContent = selector.text();
-    console.log(messageContent);
-    if (messageContent !== "") {
-      //socket.emit("msg", messageContent);
-      //selector.val("");
-    
+    var inputStr = $("input[name='about-name-input']").val();
+    var descrStr = $("textarea[name='about-text']").val();
+
+    if ( ( inputStr !== "" ) && 
+        ( descrStr !== "" ) ) {
+      //get chat name from input to label
+      $("label[name='about-name-label']").text( inputStr );
+      //get text from editor to description
+      $("pre[name='about-label']").text( descrStr );
+      //show label-like about
+      $(".chat-about-label").removeClass("d-none");
+      //hide editor-like about    
+      $(".chat-about-description").addClass("d-none");
+      
+      //fix sending and it hould be good
+      //socket.emit("FIXME", inputStr);
+      //socket.emit("CUNT", descrStr);
+
     }
   });
 ////////////////////////////////////////////////////////////////////
