@@ -200,7 +200,7 @@ $(document).ready(() => {
     console.log(`Setting current chat to ${chatId}`);
 
     $("label[name='chat-id']").text( encodeHTML(chatId) );
-    //socket.emit("getChat", chatId);
+    socket.emit("getChat", chatId);
   }
 
 /////////////////////////////////////////////////////////////////////////////
