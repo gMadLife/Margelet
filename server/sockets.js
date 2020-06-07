@@ -120,5 +120,18 @@ module.exports = io => {
         socket.to("all").emit("chat", obj);
       });
     });
+
+    socket.on("submitEditChat", (chatId, chatName, chatDescription) => {
+      if (!socket.username) return;
+
+      ChatsModel.findById(chatId, (err, chat) => {
+        if (err) return console.error("ChatsModel", err);
+
+        chat.title = chatName;
+        chat.description = chatDescription;
+
+        socket.to("all").emit("chat", chat);
+      });
+    });
   });
 };

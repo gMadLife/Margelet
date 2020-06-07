@@ -134,10 +134,7 @@ $(document).ready(() => {
       //hide editor-like about    
       $(".chat-about-description").addClass("d-none");
       
-      //fix sending and it hould be good
-      //socket.emit("FIXME", inputStr);
-      //socket.emit("CUNT", descrStr);
-
+      socket.emit("submitEditChat", currentChat(), inputStr, descrStr);
     }
   });
 ////////////////////////////////////////////////////////////////////
