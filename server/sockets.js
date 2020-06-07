@@ -33,15 +33,16 @@ module.exports = io => {
       }
     });
 
-    socket.on("msg", content => {
+    socket.on("msg", (messageContent, chatName) => {
       if (!socket.username) {
         return;
       }
 
       const obj = {
         date: new Date(),
-        content: content,
-        username: socket.username
+        content: messageContent,
+        username: socket.username,
+        chat: chatName
       };
 
       MessageModel.create(obj, err => {

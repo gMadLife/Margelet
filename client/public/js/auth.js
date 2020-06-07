@@ -44,11 +44,14 @@ $(document).ready(() => {
   $(".chat-message button").on("click", e => {
     e.preventDefault();
 
-    var selector = $("textarea[name='message']");
-    var messageContent = selector.val().trim();
+    var messageBox = $("textarea[name='message']");
+    var messageContent = messageBox.val().trim();
+
+    var chatName = $(".about-name").text();
+
     if (messageContent !== "") {
-      socket.emit("msg", messageContent);
-      selector.val("");
+      socket.emit("msg", messageContent, chatName);
+      messageBox.val("");
     }
   });
 
