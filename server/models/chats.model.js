@@ -2,7 +2,6 @@ const { Schema, model } = require("mongoose");
 
 const ChatsSchema = new Schema(
   {
-    date: Date,
     title: String,
     description: String,
     admin: String,

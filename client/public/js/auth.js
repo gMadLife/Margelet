@@ -30,41 +30,43 @@ $(".logout-btn").on("click", e => {
 $(document).ready(() => {
   var socket = io.connect("/");
   socket.on("connected", function(msg) {
-    socket.emit("receiveHistory");
     socket.emit("getChatList");
   });
 
   socket.on("message", addMessage);
+  
+  socket.on("chatList", chats => {
+    for (let chat of chats) {
+      addChat(chat);
+    }
 
-  socket.on("history", messages => {
+    if (currentChat() == null) {
+      setCurrentChat(chats[0].id);
+    }
+  });
+
+  socket.on("chatHistory", (chatId, messages) => {
     for (let message of messages) {
       addMessage(message);
     }
   });
-  
-  socket.on("chatList", chats => {
 
-  });
-
-  socket.on("chatHistory", (chatId, messages) => {
-
-  });
-
+  // Submit text message ===============================================================================================
   $(".chat-message button[type='submit']").on("click", e => {
     e.preventDefault();
 
     var messageBox = $("textarea[name='message']");
     var messageContent = messageBox.val().trim();
 
-    var chatName = $(".about-name").text();
+    var chatId = currentChat();
 
     if (messageContent !== "") {
-      socket.emit("msg", chatName, messageContent, null);
+      socket.emit("submitMessage", chatId, messageContent, null);
       messageBox.val("");
     }
   });
 
-  // Attach button
+  // Attach file =======================================================================================================
   $(".chat-message button[type='attach']").on("click", e => {
     e.preventDefault();
 
@@ -81,16 +83,24 @@ $(document).ready(() => {
       reader.onload = readerEvent => {
         var content = readerEvent.target.result; // this is the content!
         console.log(content);
-        var chatName = $(".about-name").text();
+        var chatId = currentChat();
 
-        socket.emit("msg", chatName, file.name, content);
+        socket.emit("msg", chatId, file.name, content);
       }
     }
 
     input.click();
   });
 
+  // Add new chat ======================================================================================================
+  $("button[name='add-chat']").on("click", e => {
+    e.preventDefault();
 
+    name = $("input[name='new-name-input']").val();
+    description = $("textarea[name='new-text']").text();
+
+    socket.emit("submitChat", name, description);
+  });
 
 ////////////////////////////////////////////////////////////////////////
   $(".chat-about-label button").on("click", e => {
@@ -143,6 +153,8 @@ $(document).ready(() => {
   }
 
   function addMessage(message) {
+    if(currentChat() != message.chat) return;
+
     message.date = new Date(message.date).toLocaleString();
     message.username = encodeHTML(message.username);
     message.content = encodeHTML(message.content);
