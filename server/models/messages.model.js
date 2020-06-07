@@ -5,7 +5,7 @@ const MessageSchema = new Schema(
     date: Date,
     content: String,
     username: String,
-    chat: String,
+    chat: Schema.Types.ObjectId,
     file: Schema.Types.ObjectId,
   },
   {

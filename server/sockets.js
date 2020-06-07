@@ -1,4 +1,5 @@
-const MessageModel = require("./models/messages.model");
+const ChatsModel = require("./models/chats.model");
+const MessagesModel = require("./models/messages.model");
 const UploadsModel = require("./models/uploads.model");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
@@ -34,8 +35,40 @@ module.exports = io => {
         );
       }
     });
+    
+    socket.on("getChatList", () => {
+      if (!socket.username) return;
 
-    socket.on("msg", (chatName, messageContent, fileContent) => {
+      ChatsModel.find({ users: socket.username })
+        .sort({ date: 1 })
+        .lean()
+        .exec((err, chats) => {
+          if (!err) {
+            socket.emit("chatList", chats);
+        }
+      });
+    });
+
+    socket.on("getChatHistory", (chatId) => {
+      if (!socket.username) return;
+
+      ChatsModel.exists({ id: chatId, users: socket.username }, (err, exists) => {
+        if (err || !exists) return;
+
+        MessagesModel.find({ chat: chatId })
+          .sort({ date: -1 })
+          .limit(50)
+          .sort({ date: 1 })
+          .lean()
+          .exec((err, messages) => {
+          if (err) return;
+
+          socket.emit("chatHistory", chatId, messages);
+        });
+      });
+    });
+
+    socket.on("msg", (chatId, messageContent, fileContent) => {
       if (!socket.username) return;
 
       fileId = null;
@@ -59,12 +92,12 @@ module.exports = io => {
         date: new Date(),
         content: messageContent,
         username: socket.username,
-        chat: chatName,
+        chat: chatId,
         file: fileId,
       };
 
-      MessageModel.create(obj, err => {
-        if (err) return console.error("MessageModel", err);
+      MessagesModel.create(obj, err => {
+        if (err) return console.error("MessagesModel", err);
 
         socket.emit("message", obj);
         socket.to("all").emit("message", obj);
@@ -76,7 +109,7 @@ module.exports = io => {
         return;
       }
 
-      MessageModel.find({})
+      MessagesModel.find({})
         .sort({ date: -1 })
         .limit(50)
         .sort({ date: 1 })
