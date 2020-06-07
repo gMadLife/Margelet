@@ -29,7 +29,7 @@ body {
     padding: 20px;
 }
 .users-list input {
-    border-radius: 3px;
+    border-radius: 10px;
     border: none;
     padding: 14px;
     color: white;
@@ -108,7 +108,7 @@ body {
     font-size: 80%;
 }
 .chat .chat-history .message {
-    color: white;
+    color: black;
     padding: 18px 20px;
     line-height: 26px;
     font-size: 16px;
@@ -116,6 +116,7 @@ body {
     /*width: 90%;*/
     position: relative;
 }
+/*
 .chat .chat-history .message:after {
     bottom: 100%;
     left: 7%;
@@ -128,9 +129,12 @@ body {
     border-bottom-color: #86BB71;
     border-width: 10px;
     margin-left: -10px;
-}
+} 
+*/
 .chat .chat-history .my-message {
-    background: #86BB71;
+    background: #ffffff;    /*0f2862 091f36 #4f5f76*/
+    border: 2px solid #4f5f76;
+    border-radius: 10px; 
 }
 .chat .chat-message, .room .room-create {
     padding: 20px;
@@ -142,7 +146,9 @@ body {
     font: 14px/22px "Roboto", Arial, sans-serif;
     margin-bottom: 10px;
     resize: none;
+    border-radius: 10px; 
 }
+
 .online, .offline, .me {
     margin-right: 3px;
     font-size: 10px;
@@ -219,6 +225,7 @@ body {
 .form input:focus {
     border: 1px solid #0f2862;
 }
+
 .form button {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
