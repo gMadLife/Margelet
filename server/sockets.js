@@ -68,6 +68,16 @@ module.exports = io => {
       });
     });
 
+    socket.on("getChat", (chatId) => {
+      if (!socket.username) return;
+
+      ChatsModel.findById(chatId, (err, chat) => {
+        if (err) return console.error("ChatsModel", err);
+
+        socket.emit("chat", chat);
+      });
+    });
+
     socket.on("submitMessage", (chatId, messageContent, fileContent) => {
       if (!socket.username) return;
 

@@ -200,18 +200,29 @@ $(document).ready(() => {
     console.log(`Setting current chat to ${chatId}`);
 
     $("label[name='chat-id']").text( encodeHTML(chatId) );
-    socket.emit("getChat", chatId);
+    //socket.emit("getChat", chatId);
   }
 
-
+/////////////////////////////////////////////////////////////////////////////
   socket.on("chat", (chat) => {
     console.log(`Chat event for ${chat.name} (${chat.id})`);
 
-    addChat(chat);
-    addUserList(chat.users);
-    $("label[name='about-name-label'").text(  encodeHTML(chat.title) );
-    $("pre[name='about-label']").text(  encodeHTML(chat.description) );
-    socket.emit("getChatHistory", chat.id);
+    var b = 0;
+    $(".chat-btn button").each((index) => {
+      if ($(this).id == chat._id ) { b = 1; }    
+    });
+
+    if (b = 0) {
+      addChat(chat);
+    }
+      addUserList(chat.users);
+      $("label[name='about-name-label'").text(  encodeHTML(chat.title) );
+      $("pre[name='about-label']").text(  encodeHTML(chat.description) );
+      socket.emit("getChatHistory", chat._id);
+
+      //setCurrentChat(chat._id);
+    }
+
   });
 
 
@@ -239,29 +250,39 @@ $(document).ready(() => {
     return chatId;
   }
 
-  function addChat(chat) {
-    chat.title = encodeHTML(chat.title)
-    chat.description = encodeHTML(chat.description);
-    //chat.admin = encodeHTML(chat.admin);
-    //chat.id
-    console.log(`Adding chat ${chat.title} (${chat._id})`);
+  // function addChat(chat) {
+  //   chat.title = encodeHTML(chat.title)
+  //   chat.description = encodeHTML(chat.description);
+  //   //chat.admin = encodeHTML(chat.admin);
+  //   //chat.id
+  //   console.log(`Adding chat ${chat.title} (${chat._id})`);
 
-    var html = null;
+  //   var html = null;
     
-    html = `
-    <button id="${chat._id}" class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">${chat.title}</button>`;
-    $(html)
-      .appendTo("span[name='chat-list']");
+  //   html = `
+  //   <button id="${chat._id}" name="hitler" class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">${chat.title}</button>`;
+  //   $(html)
+  //     .appendTo("span[name='chat-list']");
+  // }
+
+
+  function addChat(chat) {
+  
+    var element = document.createElement("button");
+    //Assign different attributes to the element. 
+    element.textContent = encodeHTML(chat.title);
+    element.id = chat._id;
+    element.classList = "chat-btn btn btn-primary text-left mt-2 mr-2 w-100";
+
+
+    element.onclick = function() { // Note this is a function
+      setCurrentChat( element.id );
+    };
+
+    var foo = document.getElementById("clz");
+    //Append the element in page (in span).  
+    foo.appendChild(element);
   }
-
-  $(".chat-list-z button").on("click", e => {
-    e.preventDefault();
-
-    console.log("3");
-    console.log(`Adding chat ${chat.title} (${chat._id})`);
-
-  });
-
 
 });
 
