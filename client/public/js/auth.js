@@ -30,6 +30,7 @@ $(".logout-btn").on("click", e => {
 $(document).ready(() => {
   var socket = io.connect("/");
   socket.on("connected", function(msg) {
+    console.log("Connected!");
     socket.emit("getChatList");
   });
 
@@ -40,8 +41,12 @@ $(document).ready(() => {
       addChat(chat);
     }
 
-    if ( (currentChat() == null) && ( chats.length > 0 )) {
+    if (currentChat() == null && chats.length > 0) {
+      console.log("Switching to " + chats[0].name);
       setCurrentChat(chats[0]._id);
+    }
+    else {
+      console.log("Current " + currentChat());
     }
   });
 
@@ -101,7 +106,6 @@ $(document).ready(() => {
     socket.emit("submitChat", name, description);
   });
 
-////////////////////////////////////////////////////////////////////////
   $(".chat-about-label button").on("click", e => {
     e.preventDefault();
 
@@ -114,8 +118,6 @@ $(document).ready(() => {
     //show editor-like about    
     $(".chat-about-description").removeClass("d-none");
   });
-
-
 
   $(".chat-about-description button").on("click", e => {
     e.preventDefault();
@@ -137,7 +139,7 @@ $(document).ready(() => {
       socket.emit("submitEditChat", currentChat(), inputStr, descrStr);
     }
   });
-////////////////////////////////////////////////////////////////////
+
   function clearMessages() {
     $("ul[name='messages-list'").empty();
   }
@@ -201,6 +203,7 @@ $(document).ready(() => {
 
 
   socket.on("chat",(chat) => {
+    addChat(chat);
     addUserList(chat.users);
     $("label[name='about-name-label'").text(  encodeHTML(chat.title) );
     $("pre[name='about-label']").text(  encodeHTML(chat.description) );
@@ -235,10 +238,10 @@ $(document).ready(() => {
     chat.description = encodeHTML(chat.description);
     //chat.admin = encodeHTML(chat.admin);
     //chat.id
-    console.log(chat.title);
+    console.log(`Adding chat ${chat.title} (${chat._id})`);
 
     var html = null;
-
+    
     html = `
     <button class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">${chat.title}<label class="d-none" name="chat-id">${chat._id}</label></button>`;
 
