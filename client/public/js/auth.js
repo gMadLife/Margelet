@@ -229,7 +229,7 @@ $(document).ready(() => {
 
 
   function currentChat() {
-    console.log($("label[name='chat-id']").length);
+    console.log("currentChat"+$("label[name='chat-id']").length);
 
     var chatId = $("label[name='chat-id']").text();
     if (chatId == "") {
@@ -249,17 +249,19 @@ $(document).ready(() => {
     var html = null;
     
     html = `
-    <button class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">${chat.title}<label class="d-none" name="chat-id">${chat._id}</label></button>`;
-
+    <button id="${chat._id}" class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">${chat.title}</button>`;
     $(html)
-      //.hide()
       .appendTo("span[name='chat-list']");
-
-    //$(".chat-history").animate(
-    //  { scrollTop: $(".chat-history")[0].scrollHeight },
-    //  1000
-    //);
   }
+
+  $(".chat-list-z button").on("click", e => {
+    e.preventDefault();
+
+    console.log("3");
+    console.log(`Adding chat ${chat.title} (${chat._id})`);
+
+  });
+
 
 });
 
