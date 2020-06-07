@@ -51,6 +51,8 @@ $(document).ready(() => {
   });
 
   socket.on("chatHistory", (chatId, messages) => {
+    console.log("Event chat history");
+
     for (let message of messages) {
       addMessage(message);
     }
@@ -205,7 +207,7 @@ $(document).ready(() => {
 
 /////////////////////////////////////////////////////////////////////////////
   socket.on("chat", (chat) => {
-    console.log(`Chat event for ${chat.name} (${chat.id})`);
+    console.log(`Chat event for ${chat.name} (${chat._id})`);
 
     var b = 0;
     $(".chat-btn button").each((index) => {
@@ -215,10 +217,11 @@ $(document).ready(() => {
     if (b = 0) {
       addChat(chat);
     }
-      addUserList(chat.users);
-      $("label[name='about-name-label'").text(  encodeHTML(chat.title) );
-      $("pre[name='about-label']").text(  encodeHTML(chat.description) );
-      socket.emit("getChatHistory", chat._id);
+
+    addUserList(chat.users);
+    $("label[name='about-name-label'").text(  encodeHTML(chat.title) );
+    $("pre[name='about-label']").text(  encodeHTML(chat.description) );
+    socket.emit("getChatHistory", chat._id);
 
       //setCurrentChat(chat._id);
     

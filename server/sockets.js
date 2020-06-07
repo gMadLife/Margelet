@@ -52,8 +52,8 @@ module.exports = io => {
     socket.on("getChatHistory", (chatId) => {
       if (!socket.username) return;
 
-      ChatsModel.exists({ id: chatId, users: socket.username }, (err, exists) => {
-        if (err || !exists) return;
+      //ChatsModel.exists({ id: chatId, users: socket.username }, (err, exists) => {
+      //  if (err || !exists) return;
 
         MessagesModel.find({ chat: chatId })
           .sort({ date: -1 })
@@ -61,12 +61,13 @@ module.exports = io => {
           .sort({ date: 1 })
           .lean()
           .exec((err, messages) => {
-          if (err) return;
+            console.log("asddas");
 
-          socket.emit("chatHistory", chatId, messages);
+          if (err) return;
+        socket.emit("chatHistory", chatId, messages);
         });
       });
-    });
+    //});
 
     socket.on("getChat", (chatId) => {
       if (!socket.username) return;
