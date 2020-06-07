@@ -221,7 +221,7 @@ $(document).ready(() => {
       socket.emit("getChatHistory", chat._id);
 
       //setCurrentChat(chat._id);
-    }
+    
 
   });
 
