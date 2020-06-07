@@ -31,6 +31,7 @@ $(document).ready(() => {
   var socket = io.connect("/");
   socket.on("connected", function(msg) {
     socket.emit("receiveHistory");
+    socket.emit("getChatList");
   });
 
   socket.on("message", addMessage);
@@ -39,6 +40,14 @@ $(document).ready(() => {
     for (let message of messages) {
       addMessage(message);
     }
+  });
+  
+  socket.on("chatList", chats => {
+
+  });
+
+  socket.on("chatHistory", (chatId, messages) => {
+
   });
 
   $(".chat-message button[type='submit']").on("click", e => {
