@@ -55,6 +55,35 @@ $(document).ready(() => {
     }
   });
 
+////////////////////////////////////////////////////////////////////////
+  $(".chat-about-label button").on("click", e => {
+    e.preventDefault();
+
+    $("button[class='btn-label']").addClass(".d-none");
+    console.log("painis");
+    var selector = $("pre[name='about-label']");
+    var messageContent = selector.text();
+    console.log(messageContent);
+    //var messageContent = selector.val();
+    //socket.emit("msg", messageContent);
+    selector.val("");
+  });
+
+
+  $(".chat-about-description button").on("click", e => {
+    e.preventDefault();
+
+    var selector = $("textarea[name='about-text']");
+    var messageContent = selector.text();
+    console.log(messageContent);
+    if (messageContent !== "") {
+      //socket.emit("msg", messageContent);
+      //selector.val("");
+    
+    }
+  });
+////////////////////////////////////////////////////////////////////
+
   function encodeHTML(str) {
     return $("<div />")
       .text(str)
@@ -84,49 +113,6 @@ $(document).ready(() => {
     //  { scrollTop: $(".chat-history")[0].scrollHeight },
     //  1000
     //);
-
-
-    $(".chat-about-label button").on("click", e => {
-      e.preventDefault();
-
-
-      $("button[class='btn-label']").addClass(d-none);
-      console.log("painis");
-  
-      //var selector = $("pre[name='about-label']");
-      //var messageContent = selector.val().trim();
-      //socket.emit("msg", messageContent);
-      //selector.val("");
-       
-      
-    });
-
-
-    $(".chat-about-description button").on("click", e => {
-      e.preventDefault();
-  
-      var selector = $("textarea[name='about-text']");
-      var messageContent = selector.val().trim();
-      if (messageContent !== "") {
-        //socket.emit("msg", messageContent);
-        selector.val("");
-      
-      }
-    });
-
-
   }
-});
 
-/*
-$(".chat-message button").on("click", e => {
-  e.preventDefault();
-
-  var selector = $("textarea[name='message']");
-  var messageContent = selector.val().trim();
-  if (messageContent !== "") {
-    socket.emit("msg", messageContent);
-    selector.val("");
-  }
 });
-*/
