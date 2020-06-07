@@ -40,8 +40,8 @@ $(document).ready(() => {
       addChat(chat);
     }
 
-    if (currentChat() == null) {
-      setCurrentChat(chats[0].id);
+    if ( (currentChat() == null) && ( chats.length > 0 )) {
+      setCurrentChat(chats[0]._id);
     }
   });
 
@@ -97,8 +97,7 @@ $(document).ready(() => {
     e.preventDefault();
 
     name = $("input[name='new-name-input']").val();
-    description = $("textarea[name='new-text']").text();
-
+    description = $("textarea[name='new-text']").val();
     socket.emit("submitChat", name, description);
   });
 
@@ -115,6 +114,7 @@ $(document).ready(() => {
     //show editor-like about    
     $(".chat-about-description").removeClass("d-none");
   });
+
 
 
   $(".chat-about-description button").on("click", e => {
@@ -193,4 +193,68 @@ $(document).ready(() => {
     //);
   }
 
+
+  function setCurrentChat(chatId) {
+    $("label[name='chat-id'").text( encodeHTML(chatId) );
+    socket.emit("getChat", chatId);
+  }
+
+
+  socket.on("chat",(chat) => {
+    addUserList(chat.users);
+    $("label[name='about-name-label'").text(  encodeHTML(chat.title) );
+    $("pre[name='about-label']").text(  encodeHTML(chat.description) );
+    socket.emit("getChatHistory", chat.id);
+  });
+
+
+  function addUserList(users) {
+    var html = null;
+
+    for (let user of users) {
+      html = `<button type="button" class="btn btn-primary text-left w-100 mt-3">${user.username}</button>`;
+      $(html)
+        .hide()
+        .appendTo("span[name='chatters']");
+    }
+
+  }
+
+
+  function currentChat() {
+    var chatId = $("label[name='chat-id']").text();
+    if (chatId == "") {
+      chatId = null;
+    }
+    
+    return chatId;
+  }
+
+  function addChat(chat) {
+    chat.title = encodeHTML(chat.title)
+    chat.description = encodeHTML(chat.description);
+    //chat.admin = encodeHTML(chat.admin);
+    //chat.id
+    console.log(chat.title);
+
+    var html = null;
+
+    html = `
+    <button class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">${chat.title}<label class="d-none" name="chat-id">${chat._id}</label></button>`;
+
+    $(html)
+      //.hide()
+      .appendTo("span[name='chat-list']");
+
+    //$(".chat-history").animate(
+    //  { scrollTop: $(".chat-history")[0].scrollHeight },
+    //  1000
+    //);
+  }
+
 });
+
+
+
+
+

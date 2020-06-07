@@ -116,7 +116,7 @@ module.exports = io => {
 
       ChatsModel.create(obj, err => {
         if (err) return console.error("ChatsModel", err);
-
+        socket.emit("chat", obj);
         socket.to("all").emit("chat", obj);
       });
     });
@@ -129,7 +129,7 @@ module.exports = io => {
 
         chat.title = chatName;
         chat.description = chatDescription;
-
+        socket.emit("chat", chat);
         socket.to("all").emit("chat", chat);
       });
     });
