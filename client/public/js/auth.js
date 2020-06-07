@@ -81,6 +81,8 @@ $(document).ready(() => {
     input.click();
   });
 
+
+
 ////////////////////////////////////////////////////////////////////////
   $(".chat-about-label button").on("click", e => {
     e.preventDefault();
@@ -120,6 +122,10 @@ $(document).ready(() => {
     }
   });
 ////////////////////////////////////////////////////////////////////
+  function clearMessages() {
+    $("ul[name='messages-list'").empty();
+  }
+
 
   function encodeHTML(str) {
     return $("<div />")

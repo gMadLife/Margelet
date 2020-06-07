@@ -9,6 +9,14 @@ make normal colors
 button chat description change to small pencil icon
 type your message height 1 line
 send message button on the right
-change submit files to not retarded
++change submit files to not retarded
 
 add chat goers
+
+reset message list
+
+
+
+bonus levels:
+add "Markdown" system to descriptions
+get old login window

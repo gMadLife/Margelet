@@ -388,3 +388,11 @@ button:disabled {
     margin-bottom: 10px;
     resize: none;
 }
+
+.about-name-input {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
