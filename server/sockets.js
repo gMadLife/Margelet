@@ -68,7 +68,7 @@ module.exports = io => {
       });
     });
 
-    socket.on("msg", (chatId, messageContent, fileContent) => {
+    socket.on("submitMessage", (chatId, messageContent, fileContent) => {
       if (!socket.username) return;
 
       fileId = null;
@@ -104,21 +104,21 @@ module.exports = io => {
       });
     });
 
-    socket.on("receiveHistory", () => {
-      if (!socket.username) {
-        return;
-      }
+    socket.on("submitChat", (chatName, chatDescription) => {
+      if (!socket.username) return;
 
-      MessagesModel.find({})
-        .sort({ date: -1 })
-        .limit(50)
-        .sort({ date: 1 })
-        .lean()
-        .exec((err, messages) => {
-          if (!err) {
-            socket.emit("history", messages);
-          }
-        });
+      const obj = {
+        title: chatName,
+        description: chatDescription,
+        admin: socket.username,
+        users: [socket.username],
+      };
+
+      ChatsModel.create(obj, err => {
+        if (err) return console.error("ChatsModel", err);
+
+        socket.to("all").emit("chat", obj);
+      });
     });
   });
 };
