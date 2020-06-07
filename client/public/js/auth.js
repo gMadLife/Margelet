@@ -197,12 +197,16 @@ $(document).ready(() => {
 
 
   function setCurrentChat(chatId) {
-    $("label[name='chat-id'").text( encodeHTML(chatId) );
+    console.log(`Setting current chat to ${chatId}`);
+
+    $("label[name='chat-id']").text( encodeHTML(chatId) );
     socket.emit("getChat", chatId);
   }
 
 
-  socket.on("chat",(chat) => {
+  socket.on("chat", (chat) => {
+    console.log(`Chat event for ${chat.name} (${chat.id})`);
+
     addChat(chat);
     addUserList(chat.users);
     $("label[name='about-name-label'").text(  encodeHTML(chat.title) );
@@ -225,6 +229,8 @@ $(document).ready(() => {
 
 
   function currentChat() {
+    console.log($("label[name='chat-id']").length);
+
     var chatId = $("label[name='chat-id']").text();
     if (chatId == "") {
       chatId = null;
