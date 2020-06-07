@@ -52,7 +52,7 @@ $(document).ready(() => {
 
   socket.on("chatHistory", (chatId, messages) => {
     console.log("Event chat history");
-
+    clearMessages();
     for (let message of messages) {
       addMessage(message);
     }
