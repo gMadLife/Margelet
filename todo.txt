@@ -20,6 +20,9 @@ add chat goers
 pop up windows
 
 
+kolyan rukovodstvo
+
 bonus levels:
 add "Markdown" system to descriptions
 get old login window
+
