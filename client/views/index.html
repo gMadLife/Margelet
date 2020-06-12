@@ -89,6 +89,9 @@
                                     <div class="chat-about clearfix">
                                         <div class="chat-about-label">
                                             <label name="chat-id" class="d-none"></label>
+                                            <svg id="status" style="fill: green; width: 20px; height: 20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"> 
+                                                <circle cx="8" cy="8" r="8"/>
+                                            </svg>
                                             <label name="about-name-label">Chat name</label><br>
                                             <pre name="about-label">Chat description</pre>
                                             <button class='btn btn-primary btn-label' id="pencil" type='submit'>
@@ -99,6 +102,17 @@
                                         </div>
 
                                         <div class="d-none chat-about-description">
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio1">
+                                                  <input type="radio" class="form-check-input mx-1" id="radio1" name="optradio" value="1" checked>In work
+                                                </label>
+                                                <label class="form-check-label" for="radio2">
+                                                  <input type="radio" class="form-check-input mx-1" id="radio2" name="optradio" value="2">Waiting
+                                                </label>
+                                                <label class="form-check-label">
+                                                  <input type="radio" class="form-check-input mx-1" id="radio2" name="optradio" value="3">Finished
+                                                </label>
+                                            </div>
                                             <input type="text" name="about-name-input" class="about-name-input"></input>
                                             <textarea name="about-text" placeholder ="Input information about this chat" rows="3"></textarea>
                                             <button class="wider btn btn-primary btn-about" type="submit" style="width: 100%">
@@ -136,7 +150,8 @@
             <div class="col-md-3 mt-3"> <!-- right table for participants -->
                 <div class="col-md-12" style="color: #ffffff;">
                     <span name="chatters"> 
-                        
+                        <button type="button" class="btn btn-primary text-left w-100 mt-3">test</button>
+                        <button type="button" class="btn btn-primary text-left w-100 mt-3">test2</button>
                     </span>
                     <button type="button" class="btn btn-primary text-left w-100 mt-3" data-toggle="modal" data-target="#myModal2">
                         +Add users
@@ -189,7 +204,7 @@
             
             <!-- Modal body -->
             <div class="modal-body">
-              Modal body..
+                <button type="button" class="btn btn-primary text-left w-100 mt-3">test2</button>
             </div>
             
             <!-- Modal footer -->
