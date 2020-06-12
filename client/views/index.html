@@ -89,8 +89,8 @@
                                     <div class="chat-about clearfix">
                                         <div class="chat-about-label">
                                             <label name="chat-id" class="d-none"></label>
-                                            <svg id="status" style="fill: green; width: 20px; height: 20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"> 
-                                                <circle cx="8" cy="8" r="8"/>
+                                            <svg id="status" class="" style="width: 20px; height: 20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"> 
+                                                <circle cx="8" cy="8" r="8"/> <!-- fill="green" -->
                                             </svg>
                                             <label name="about-name-label">Chat name</label><br>
                                             <pre name="about-label">Chat description</pre>
@@ -104,13 +104,13 @@
                                         <div class="d-none chat-about-description">
                                             <div class="form-check-inline">
                                                 <label class="form-check-label" for="radio1">
-                                                  <input type="radio" class="form-check-input mx-1" id="radio1" name="optradio" value="1" checked>In work
+                                                  <input type="radio" class="form-check-input mx-1" id="radio1" name="status-rb" value="green" checked>In work
                                                 </label>
                                                 <label class="form-check-label" for="radio2">
-                                                  <input type="radio" class="form-check-input mx-1" id="radio2" name="optradio" value="2">Waiting
+                                                  <input type="radio" class="form-check-input mx-1" id="radio2" name="status-rb" value="yellow">Waiting
                                                 </label>
                                                 <label class="form-check-label">
-                                                  <input type="radio" class="form-check-input mx-1" id="radio2" name="optradio" value="3">Finished
+                                                  <input type="radio" class="form-check-input mx-1" id="radio3" name="status-rb" value="red">Finished
                                                 </label>
                                             </div>
                                             <input type="text" name="about-name-input" class="about-name-input"></input>

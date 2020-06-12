@@ -446,3 +446,15 @@ textarea[name="new-text"] {
     padding: 0px 10px;
     margin-bottom: 10px;
 }
+
+.status-green {
+    fill: green;
+}
+
+.status-yellow {
+    fill: yellow;
+}
+
+.status-red {
+    fill: red;
+}

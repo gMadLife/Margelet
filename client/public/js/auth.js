@@ -108,6 +108,7 @@ $(document).ready(() => {
     socket.emit("submitChat", name, description);
   });
 
+  // "About section" html editing ======================================================================================
   $(".chat-about-label button").on("click", e => {
     e.preventDefault();
 
@@ -119,8 +120,17 @@ $(document).ready(() => {
     $(".chat-about-label").addClass("d-none");
     //show editor-like about    
     $(".chat-about-description").removeClass("d-none");
-  });
+    
+    if ( $("#status").hasClass( "status-green" ) ) {
+      document.getElementById("radio1").checked = true;
+    } else if ( $("#status").hasClass( "status-yellow" ) ) {
+      document.getElementById("radio2").checked = true;
+    } else if ( $("#status").hasClass( "status-red" ) ) {
+      document.getElementById("radio3").checked = true;
+    }
 
+  });
+  // same =====================
   $(".chat-about-description button").on("click", e => {
     e.preventDefault();
 
@@ -138,7 +148,26 @@ $(document).ready(() => {
       //hide editor-like about    
       $(".chat-about-description").addClass("d-none");
       
-      socket.emit("submitEditChat", currentChat(), inputStr, descrStr);
+      $("#status").removeClass("status-green");
+      $("#status").removeClass("status-yellow");
+      $("#status").removeClass("status-red");
+      
+      var status = "status-";
+      if ( document.getElementById("radio1").checked ) {
+        status += "green";
+      } else if ( document.getElementById("radio2").checked ) {
+        status += "yellow";
+      } else if ( document.getElementById("radio3").checked ) {
+        status += "red";
+      } else {
+        console.log("status error");
+        status = "";
+      }
+
+      $("#status").addClass( status );
+
+      
+      socket.emit("submitEditChat", currentChat(), inputStr, descrStr, status);
     }
   });
 
