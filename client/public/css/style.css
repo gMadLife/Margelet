@@ -447,14 +447,14 @@ textarea[name="new-text"] {
     margin-bottom: 10px;
 }
 
-.status-green {
+.status-0 {
     fill: green;
 }
 
-.status-yellow {
+.status-1 {
     fill: yellow;
 }
 
-.status-red {
+.status-2 {
     fill: red;
 }

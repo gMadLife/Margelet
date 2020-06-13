@@ -104,13 +104,13 @@
                                         <div class="d-none chat-about-description">
                                             <div class="form-check-inline">
                                                 <label class="form-check-label" for="radio1">
-                                                  <input type="radio" class="form-check-input mx-1" id="radio1" name="status-rb" value="green" checked>In work
+                                                  <input type="radio" class="form-check-input mx-1" id="radio1" name="status-rb" value="0" checked>In work
                                                 </label>
                                                 <label class="form-check-label" for="radio2">
-                                                  <input type="radio" class="form-check-input mx-1" id="radio2" name="status-rb" value="yellow">Waiting
+                                                  <input type="radio" class="form-check-input mx-1" id="radio2" name="status-rb" value="1">Waiting
                                                 </label>
                                                 <label class="form-check-label">
-                                                  <input type="radio" class="form-check-input mx-1" id="radio3" name="status-rb" value="red">Finished
+                                                  <input type="radio" class="form-check-input mx-1" id="radio3" name="status-rb" value="2">Finished
                                                 </label>
                                             </div>
                                             <input type="text" name="about-name-input" class="about-name-input"></input>
@@ -177,6 +177,17 @@
                 
                 <!-- Modal body -->
                 <div class="modal-body">
+                    <div class="form-check-inline">
+                        <label class="form-check-label" for="radio1">
+                          <input type="radio" class="form-check-input mx-1" id="radio-anc-1" name="status-rb-anc" value="0" checked>In work
+                        </label>
+                        <label class="form-check-label" for="radio2">
+                          <input type="radio" class="form-check-input mx-1" id="radio-anc-2" name="status-rb-anc" value="1">Waiting
+                        </label>
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input mx-1" id="radio-anc-3" name="status-rb-anc" value="2">Finished
+                        </label>
+                    </div>
                     <input type="text" name="new-name-input" class="new-name-input" placeholder="Chat name"></input>
                     <textarea name="new-text" placeholder ="Chat description" rows="3"></textarea>
                 </div>

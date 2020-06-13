@@ -105,8 +105,20 @@ $(document).ready(() => {
 
     name = $("input[name='new-name-input']").val();
     description = $("textarea[name='new-text']").val();
-    
-    socket.emit("submitChat", name, description);
+
+    var status = "";
+    if ( document.getElementById("radio-anc-1").checked ) {
+      status = "0";
+    } else if ( document.getElementById("radio-anc-2").checked ) {
+      status = "1";
+    } else if ( document.getElementById("radio-anc-3").checked ) {
+      status = "2";
+    } else {
+      console.log("status error");
+      status = "";
+    }
+
+    socket.emit("submitChat", name, description, status);
   });
 
   // "About section" html editing ======================================================================================
@@ -122,11 +134,11 @@ $(document).ready(() => {
     //show editor-like about    
     $(".chat-about-description").removeClass("d-none");
     
-    if ( $("#status").hasClass( "status-green" ) ) {
+    if ( $("#status").hasClass( "status-0" ) ) {
       document.getElementById("radio1").checked = true;
-    } else if ( $("#status").hasClass( "status-yellow" ) ) {
+    } else if ( $("#status").hasClass( "status-1" ) ) {
       document.getElementById("radio2").checked = true;
-    } else if ( $("#status").hasClass( "status-red" ) ) {
+    } else if ( $("#status").hasClass( "status-2" ) ) {
       document.getElementById("radio3").checked = true;
     }
 
@@ -149,23 +161,23 @@ $(document).ready(() => {
       //hide editor-like about    
       $(".chat-about-description").addClass("d-none");
       
-      $("#status").removeClass("status-green");
-      $("#status").removeClass("status-yellow");
-      $("#status").removeClass("status-red");
+      $("#status").removeClass("status-0");
+      $("#status").removeClass("status-1");
+      $("#status").removeClass("status-2");
       
-      var status = "status-";
+      var status = "";
       if ( document.getElementById("radio1").checked ) {
-        status += "green";
+        status = "0";
       } else if ( document.getElementById("radio2").checked ) {
-        status += "yellow";
+        status = "1";
       } else if ( document.getElementById("radio3").checked ) {
-        status += "red";
+        status = "2";
       } else {
         console.log("status error");
         status = "";
       }
 
-      $("#status").addClass( status );
+      $("#status").addClass( "status-" + status );
 
       
       socket.emit("submitEditChat", currentChat(), inputStr, descrStr, status);
@@ -237,7 +249,7 @@ $(document).ready(() => {
 
 /////////////////////////////////////////////////////////////////////////////
   socket.on("chat", (chat) => {
-    console.log(`Chat event for ${chat.name} (${chat._id})`);
+    console.log(`Chat event for ${chat.title} (${chat._id})`);
 
     var b = 0;
     $(".chat-btn button").each((index) => {
@@ -249,12 +261,18 @@ $(document).ready(() => {
     }
 
     addUserList(chat.users);
-    $("label[name='about-name-label'").text(  encodeHTML(chat.title) );
+    $("label[name='about-name-label'").text(  chat.title );
     $("pre[name='about-label']").text(  encodeHTML(chat.description) );
+
+    $("#status").removeClass("status-0");
+    $("#status").removeClass("status-1");
+    $("#status").removeClass("status-2");
+    $("#status").addClass("status-" + chat.status);
+
     socket.emit("getChatHistory", chat._id);
 
       //setCurrentChat(chat._id);
-    
+console.log(`Chat event 2 for ${chat.title} (${chat._id})`);  
 
   });
 
