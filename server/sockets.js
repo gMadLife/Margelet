@@ -142,6 +142,8 @@ module.exports = io => {
         status: chatStatus,
       };
 
+      var query = {'_id': chatId};
+
       ChatsModel.findOneAndUpdate(query, edited, {upsert: false}, (err, chat) => {
         if (err) return console.error("ChatsModel", err);
         
