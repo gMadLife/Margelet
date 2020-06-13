@@ -287,19 +287,18 @@ $(document).ready(() => {
 
   });
 
-
   function addUserList(users) {
+  $("span[name='chatters']").html("");
+
     var html = null;
 
     for (let user of users) {
-      html = `<button type="button" class="btn btn-primary text-left w-100 mt-3">${user.username}</button>`;
+      html = `<button type="button" class="user-btn btn btn-primary text-left w-100 mt-3">${user}</button>`;
       $(html)
-        .hide()
         .appendTo("span[name='chatters']");
     }
 
   }
-
 
   function currentChat() {
     console.log("currentChat"+$("label[name='chat-id']").length);
@@ -312,22 +311,6 @@ $(document).ready(() => {
     return chatId;
   }
 
-  // function addChat(chat) {
-  //   chat.title = encodeHTML(chat.title)
-  //   chat.description = encodeHTML(chat.description);
-  //   //chat.admin = encodeHTML(chat.admin);
-  //   //chat.id
-  //   console.log(`Adding chat ${chat.title} (${chat._id})`);
-
-  //   var html = null;
-    
-  //   html = `
-  //   <button id="${chat._id}" name="hitler" class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">${chat.title}</button>`;
-  //   $(html)
-  //     .appendTo("span[name='chat-list']");
-  // }
-
-
   function addChat(chat) {
     
     console.log("addChat " + chat.title + " (" + chat._id + ") ");
@@ -337,7 +320,7 @@ $(document).ready(() => {
     //Assign different attributes to the element. 
     element.textContent = encodeHTML(chat.title);
     element.id = chat._id;
-    element.classList = "chat-btn btn btn-primary text-left mt-2 mr-2 w-100";
+    element.classList = "chat-btn btn btn-primary text-left mt-2 pr-2 w-100";
 
 
     element.onclick = function() { // Note this is a function
@@ -349,9 +332,29 @@ $(document).ready(() => {
     foo.appendChild(element);
   }
 
+  $("button[name='add-users-btn']").on("click", e => {
+    e.preventDefault();
+
+
+
+    $(".user-btn").each((index, value) => {
+      console.log(value.textContent);
+      
+      //if (value.text == chat._id ) { chatExists = true; }
+    });
+
+    // if (!chatExists) {
+    //   addChat(chat);
+    // }
+
+
+    //input.click();
+  });
+
 });
 
 
 
-
+// socket.emit("getUserList")
+// socket.on("userList")
 
