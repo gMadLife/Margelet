@@ -119,14 +119,14 @@ module.exports = io => {
       if (!socket.username) return;
 
       if (!"admin" in chat) {
-        obj.admin = socket.username;
+        chat.admin = socket.username;
       }
 
       if (!"users" in chat) {
-        obj.users = [obj.admin];
+        chat.users = [chat.admin];
       }
 
-      ChatsModel.create(obj, (err, chat) => {
+      ChatsModel.create(chat, (err, chat) => {
         if (err) return console.error("ChatsModel", err);
 
         socket.emit("chat", chat);
