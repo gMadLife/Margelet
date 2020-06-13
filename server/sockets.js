@@ -146,5 +146,21 @@ module.exports = io => {
         socket.to("all").emit("chat", chat);
       });
     });
+
+    socket.on("getUserList", () => {
+      if (!socket.username) return;
+
+      UsersModel.find({}, (err, users) => {
+        if (err) return console.error("UsersModel", err);
+
+        var usernames = []
+
+        users.forEach(user => {
+          usernames.push(user.username);
+        });
+
+        socket.emit("userList", usernames);
+      });
+    });
   });
 };
