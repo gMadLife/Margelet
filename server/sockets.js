@@ -136,12 +136,14 @@ module.exports = io => {
     socket.on("submitEditChat", (chatId, chatName, chatDescription, chatStatus) => {
       if (!socket.username) return;
 
-      ChatsModel.findById(chatId, (err, chat) => {
-        if (err) return console.error("ChatsModel", err);
+      const edited = {
+        title: chatName,
+        description: chatDescription,
+        status: chatStatus,
+      };
 
-        chat.title = chatName;
-        chat.description = chatDescription;
-        chat.status = chatStatus;
+      ChatsModel.findOneAndUpdate(query, edited, {upsert: false}, (err, chat) => {
+        if (err) return console.error("ChatsModel", err);
         
         socket.emit("chat", chat);
         socket.to("all").emit("chat", chat);

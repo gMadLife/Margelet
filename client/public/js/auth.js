@@ -105,6 +105,7 @@ $(document).ready(() => {
 
     name = $("input[name='new-name-input']").val();
     description = $("textarea[name='new-text']").val();
+    
     socket.emit("submitChat", name, description);
   });
 
