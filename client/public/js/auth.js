@@ -251,12 +251,12 @@ $(document).ready(() => {
   socket.on("chat", (chat) => {
     console.log(`Chat event for ${chat.title} (${chat._id})`);
 
-    var b = 0;
-    $(".chat-btn button").each((index) => {
-      if ($(this).id == chat._id ) { b = 1; }    
+    var chatExists = false;
+    $(".chat-btn").each((index, value) => {
+      if (value.id == chat._id ) { chatExists = true; }
     });
 
-    if (b = 0) {
+    if (!chatExists) {
       addChat(chat);
     }
 
@@ -272,7 +272,6 @@ $(document).ready(() => {
     socket.emit("getChatHistory", chat._id);
 
       //setCurrentChat(chat._id);
-    console.log(`Chat event 2 for ${chat.title} (${chat._id})`);  
 
   });
 
@@ -319,6 +318,9 @@ $(document).ready(() => {
 
   function addChat(chat) {
   
+    console.log("addChat " + chat.title + " (" + chat._id + ") ");
+
+
     var element = document.createElement("button");
     //Assign different attributes to the element. 
     element.textContent = encodeHTML(chat.title);
