@@ -144,9 +144,9 @@ module.exports = io => {
 
       var query = {'_id': chatId};
 
-      ChatsModel.findOneAndUpdate(query, edited, {upsert: false}, (err, chat) => {
+      ChatsModel.findOneAndUpdate(query, edited, {upsert: false, new: true}, (err, chat) => {
         if (err) return console.error("ChatsModel", err);
-        
+
         socket.emit("chat", chat);
         socket.to("all").emit("chat", chat);
       });

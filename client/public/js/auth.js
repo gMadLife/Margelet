@@ -272,7 +272,7 @@ $(document).ready(() => {
     socket.emit("getChatHistory", chat._id);
 
       //setCurrentChat(chat._id);
-console.log(`Chat event 2 for ${chat.title} (${chat._id})`);  
+    console.log(`Chat event 2 for ${chat.title} (${chat._id})`);  
 
   });
 
