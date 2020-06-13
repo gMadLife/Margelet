@@ -1,6 +1,7 @@
 const ChatsModel = require("./models/chats.model");
 const MessagesModel = require("./models/messages.model");
 const UploadsModel = require("./models/uploads.model");
+const UsersModel = require("./models/users.model");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const mongoose = require("mongoose");

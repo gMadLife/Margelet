@@ -334,27 +334,64 @@ $(document).ready(() => {
 
   $("button[name='add-users-btn']").on("click", e => {
     e.preventDefault();
+    socket.emit("getUserList");
+  });
 
+  socket.on("userList", (users) => {
+  console.log("possible users shown");
 
+    $("div[name='new-chatters']").html("");
+    var html = null;
+    
+    var oldUserList = [];
 
     $(".user-btn").each((index, value) => {
-      console.log(value.textContent);
-      
-      //if (value.text == chat._id ) { chatExists = true; }
+      oldUserList.push(value.textContent);
     });
 
-    // if (!chatExists) {
-    //   addChat(chat);
-    // }
+    for (let user of users) {
+      var us = false;
+      
+      $(".user-btn").each((index, value) => {
+        if (value.textContent == user) { us = true; }
+      });
 
+      if (!us) {
+        (function (user, oldUserList) {
+        var element = document.createElement("button");
+        //Assign different attributes to the element. 
+        element.textContent = encodeHTML(user);
+        element.name = encodeHTML(user);
+        element.classList = "new-user-btn btn btn-primary text-left w-100 mt-2";
+    
+        var newUserList = oldUserList.slice(0);
+    
+        element.onclick = function() { // Note this is a function
+          var newUserList = [element.name, ...oldUserList];
+          newUserList.sort();
+          //console.log(newUserList);
+          var chat = {
+            users: newUserList,
+            _id: currentChat(),
+          }
+          socket.emit("submitEditChat", chat);
+          document.getElementById("close-new-user").click();
+        };
+    
+        var foo = document.getElementById("new-chatters");
+        foo.appendChild(element);
+        // html = <button type="button" name="${user}" class="new-user-btn btn btn-primary text-left w-100 mt-3">${user}</button>;
+        // $(html)
+        //   .appendTo("div[name='new-chatters']");
+        }) (user, oldUserList);
+     }
+
+
+
+    }
 
     //input.click();
   });
 
 });
-
-
-
-// socket.emit("getUserList")
-// socket.on("userList")
 
