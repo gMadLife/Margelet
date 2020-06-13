@@ -118,7 +118,12 @@ $(document).ready(() => {
       status = "";
     }
 
-    socket.emit("submitChat", name, description, status);
+    const chat = {
+      title: name,
+      description: description,
+      status: status,
+    }
+    socket.emit("submitChat", chat);
   });
 
   // "About section" html editing ======================================================================================
@@ -179,8 +184,13 @@ $(document).ready(() => {
 
       $("#status").addClass( "status-" + status );
 
-      
-      socket.emit("submitEditChat", currentChat(), inputStr, descrStr, status);
+      const chat = {
+        title: inputStr,
+        description: descrStr,
+        status: status,
+        _id: currentChat(),
+      }
+      socket.emit("submitEditChat", chat);
     }
   });
 
@@ -261,13 +271,15 @@ $(document).ready(() => {
     }
 
     addUserList(chat.users);
-    $("label[name='about-name-label'").text(  chat.title );
+    $("label[name='about-name-label'").text(  encodeHTML(chat.title) );
     $("pre[name='about-label']").text(  encodeHTML(chat.description) );
 
     $("#status").removeClass("status-0");
     $("#status").removeClass("status-1");
     $("#status").removeClass("status-2");
     $("#status").addClass("status-" + chat.status);
+
+    $("#"+chat._id).text( encodeHTML(chat.title) );
 
     socket.emit("getChatHistory", chat._id);
 
@@ -317,7 +329,7 @@ $(document).ready(() => {
 
 
   function addChat(chat) {
-  
+    
     console.log("addChat " + chat.title + " (" + chat._id + ") ");
 
 
