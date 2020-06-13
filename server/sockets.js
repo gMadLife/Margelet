@@ -115,7 +115,7 @@ module.exports = io => {
       });
     });
 
-    socket.on("submitChat", (chatName, chatDescription) => {
+    socket.on("submitChat", (chatName, chatDescription, chatStatus) => {
       if (!socket.username) return;
 
       const obj = {
@@ -123,6 +123,7 @@ module.exports = io => {
         description: chatDescription,
         admin: socket.username,
         users: [socket.username],
+        status: chatStatus,
       };
 
       ChatsModel.create(obj, err => {
@@ -132,7 +133,7 @@ module.exports = io => {
       });
     });
 
-    socket.on("submitEditChat", (chatId, chatName, chatDescription) => {
+    socket.on("submitEditChat", (chatId, chatName, chatDescription, chatStatus) => {
       if (!socket.username) return;
 
       ChatsModel.findById(chatId, (err, chat) => {
@@ -140,6 +141,8 @@ module.exports = io => {
 
         chat.title = chatName;
         chat.description = chatDescription;
+        chat.status = chatStatus;
+        
         socket.emit("chat", chat);
         socket.to("all").emit("chat", chat);
       });

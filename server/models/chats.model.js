@@ -6,6 +6,7 @@ const ChatsSchema = new Schema(
     description: String,
     admin: String,
     users: [String],
+    status: Number,
   },
   {
     versionKey: false,
