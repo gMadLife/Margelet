@@ -119,11 +119,11 @@ module.exports = io => {
       if (!socket.username) return;
 
       if (!"admin" in chat) {
-        obj["admin"] = socket.username;
+        obj.admin = socket.username;
       }
 
       if (!"users" in chat) {
-        obj["users"] = [obj["admin"]];
+        obj.users = [obj.admin];
       }
 
       ChatsModel.create(obj, (err, chat) => {
@@ -137,7 +137,7 @@ module.exports = io => {
     socket.on("submitEditChat", (edited) => {
       if (!socket.username) return;
 
-      var query = {'_id': chatId};
+      var query = {'_id': edited._id};
 
       ChatsModel.findOneAndUpdate(query, edited, {upsert: false, new: true}, (err, chat) => {
         if (err) return console.error("ChatsModel", err);
