@@ -126,10 +126,11 @@ module.exports = io => {
         status: chatStatus,
       };
 
-      ChatsModel.create(obj, err => {
+      ChatsModel.create(obj, (err, chat) => {
         if (err) return console.error("ChatsModel", err);
-        socket.emit("chat", obj);
-        socket.to("all").emit("chat", obj);
+
+        socket.emit("chat", chat);
+        socket.to("all").emit("chat", chat);
       });
     });
 
