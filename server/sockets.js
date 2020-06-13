@@ -115,16 +115,16 @@ module.exports = io => {
       });
     });
 
-    socket.on("submitChat", (chatName, chatDescription, chatStatus) => {
+    socket.on("submitChat", (chat) => {
       if (!socket.username) return;
 
-      const obj = {
-        title: chatName,
-        description: chatDescription,
-        admin: socket.username,
-        users: [socket.username],
-        status: chatStatus,
-      };
+      if (!"admin" in chat) {
+        obj["admin"] = socket.username;
+      }
+
+      if (!"users" in chat) {
+        obj["users"] = [obj["admin"]];
+      }
 
       ChatsModel.create(obj, (err, chat) => {
         if (err) return console.error("ChatsModel", err);
@@ -134,14 +134,8 @@ module.exports = io => {
       });
     });
 
-    socket.on("submitEditChat", (chatId, chatName, chatDescription, chatStatus) => {
+    socket.on("submitEditChat", (edited) => {
       if (!socket.username) return;
-
-      const edited = {
-        title: chatName,
-        description: chatDescription,
-        status: chatStatus,
-      };
 
       var query = {'_id': chatId};
 
