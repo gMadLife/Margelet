@@ -157,6 +157,9 @@
                     <button name="add-users-btn" type="button" class="btn btn-primary text-left w-100 mt-3" data-toggle="modal" data-target="#myModal2">
                         +Add users
                     </button>
+                    <button name="rem-users-btn" type="button" class="btn btn-primary text-left w-100 mt-3" data-toggle="modal" data-target="#myModal3">
+                        -Remove users
+                    </button>
                 </div>
                 </div>        
             </div>
@@ -217,7 +220,10 @@
             
             <!-- Modal body -->
             <div class="modal-body" name="new-chatters" id="new-chatters">
-                <button type="button" class="btn btn-primary text-left w-100 mt-3">test12112</button>
+                <button type="button" class="btn btn-primary text-left w-100 mt-3">
+                    <span class="spinner-border spinner-border-sm"></span>
+                    Loading
+                </button>
             </div>
             
             <!-- Modal footer -->
@@ -228,6 +234,33 @@
           </div>
         </div>
       </div>
+<!-- popup window 3, remove users from chat-->
+<div class="modal fade" id="myModal3">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add user</h4>
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body" name="rem-chatters" id="rem-chatters">
+            <button type="button" class="btn btn-primary text-left w-100 mt-3">
+                <span class="spinner-border spinner-border-sm"></span>
+                Loading
+            </button>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button id="close-rem-user" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
     {% endif %}
 
 <!-- <script>

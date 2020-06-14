@@ -385,13 +385,54 @@ $(document).ready(() => {
         //   .appendTo("div[name='new-chatters']");
         }) (user, oldUserList);
      }
-
-
-
     }
 
     //input.click();
   });
 
-});
 
+  $("button[name='rem-users-btn']").on("click", e => {
+    e.preventDefault();
+  
+    $("div[name='rem-chatters']").html("");
+    var html = null;
+  
+    var oldUserList = [];
+  
+    $(".user-btn").each((index, value) => {
+      oldUserList.push(value.textContent);
+    });
+
+    oldUserList.forEach( (value) => {
+      var element = document.createElement("button");
+      
+      element.textContent = value;
+      element.name = value;
+      element.classList = "rem-user-btn btn btn-primary text-left w-100 mt-2";
+  
+      var newUserList = oldUserList.slice(0);
+
+console.log(oldUserList + "  " + newUserList);
+
+      element.onclick = function() {
+        var newUserList = [...oldUserList];
+        newUserList.splice( newUserList.indexOf(value, 0) , 1);
+console.log(newUserList + " new cunts");
+        var chat = {
+          users: newUserList,
+          _id: currentChat(),
+        }
+        
+        socket.emit("submitEditChat", chat);
+        document.getElementById("close-rem-user").click();
+      }
+
+      var foo = document.getElementById("rem-chatters");
+      foo.appendChild(element);
+
+    });
+    
+    socket.emit("getUserList");
+  });
+
+});
