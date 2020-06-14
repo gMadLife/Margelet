@@ -415,6 +415,7 @@ pre[name="about-label"] {
     max-width: 45vw;
     display: inline;
     word-wrap: break-word;
+    font: 14px/22px "Roboto", Arial, sans-serif;
 }
 
 #pencil {
@@ -434,7 +435,7 @@ pre[name="about-label"] {
 textarea[name="new-text"] {
     display: block;
     width: 100%;
-    padding: 10px 20px;
+    padding: 5px 10px;
     font: 14px/22px "Roboto", Arial, sans-serif;
     margin-bottom: 10px;
     resize: none;
@@ -443,8 +444,10 @@ textarea[name="new-text"] {
 .new-name-input {
     display: block;
     width: 100%;
-    padding: 0px 10px;
+    padding: 5px 10px;
     margin-bottom: 10px;
+    margin-top: 10px;
+    font: 14px/22px "Roboto", Arial, sans-serif;
 }
 
 .status-0 {
