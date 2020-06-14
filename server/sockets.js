@@ -62,10 +62,9 @@ module.exports = io => {
           .sort({ date: 1 })
           .lean()
           .exec((err, messages) => {
-            console.log("asddas");
-
           if (err) return;
-        socket.emit("chatHistory", chatId, messages);
+          
+          socket.emit("chatHistory", chatId, messages);
         });
       });
     //});
@@ -119,11 +118,13 @@ module.exports = io => {
     socket.on("submitChat", (chat) => {
       if (!socket.username) return;
 
-      if (!"admin" in chat) {
+      console.log(chat);
+
+      if (chat.admin === undefined) {
         chat.admin = socket.username;
       }
 
-      if (!"users" in chat) {
+      if (chat.users === undefined) {
         chat.users = [chat.admin];
       }
 
