@@ -1,5 +1,5 @@
 global.Promise = require("bluebird");
-const PORT = process.env.PORT || 7777;
+const PORT = process.env.PORT || 80;
 
 const express = require("express");
 const app = express();
