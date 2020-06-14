@@ -403,34 +403,37 @@ $(document).ready(() => {
       oldUserList.push(value.textContent);
     });
 
-    oldUserList.forEach( (value) => {
-      var element = document.createElement("button");
+    oldUserList.splice( oldUserList.indexOf(document.getElementById("name").textContent, 0) , 1);
+
+    if (oldUserList.length != 0) {
+      oldUserList.forEach( (value) => {
+        var element = document.createElement("button");
       
-      element.textContent = value;
-      element.name = value;
-      element.classList = "rem-user-btn btn btn-primary text-left w-100 mt-2";
+        element.textContent = value;
+        element.name = value;
+        element.classList = "rem-user-btn btn btn-primary text-left w-100 mt-2";
   
-      var newUserList = oldUserList.slice(0);
+        var newUserList = oldUserList.slice(0);
 
-console.log(oldUserList + "  " + newUserList);
-
-      element.onclick = function() {
-        var newUserList = [...oldUserList];
-        newUserList.splice( newUserList.indexOf(value, 0) , 1);
-console.log(newUserList + " new cunts");
-        var chat = {
-          users: newUserList,
-          _id: currentChat(),
-        }
+        element.onclick = function() {
+          var newUserList = [...oldUserList];
+          newUserList.splice( newUserList.indexOf(value, 0) , 1);
+          var chat = {
+            users: newUserList,
+            _id: currentChat(),
+          }
         
-        socket.emit("submitEditChat", chat);
-        document.getElementById("close-rem-user").click();
-      }
+          socket.emit("submitEditChat", chat);
+          document.getElementById("close-rem-user").click();
+        } 
 
-      var foo = document.getElementById("rem-chatters");
-      foo.appendChild(element);
+        var foo = document.getElementById("rem-chatters");
+        foo.appendChild(element);
 
-    });
+      });
+    } else {
+      document.getElementById("rem-chatters").textContent = "No users to delete";
+    }
     
     socket.emit("getUserList");
   });
