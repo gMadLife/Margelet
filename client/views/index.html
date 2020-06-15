@@ -29,13 +29,15 @@
             <div class="form">
                 <div>
                     <form class="register" method="post" style="display: none;">
+                        <div style="font-size: 2rem" class="font-weight-light align-middle">Create an account</div>
+                        <br>
                         <input type="text" name="username" placeholder="Username"/>
                         <input type="password" name="password" placeholder="Password"/>
-                        <button type="submit">create</button>
+                        <button type="submit">Create</button>
                         <p class="message">Already registered? <a href="#">Sign In</a></p>
                     </form>
                     <form class="login" method="post">
-                        <div style="font-size: 2rem" class="font-weight-light align-middle">Sign In</div>
+                        <div style="font-size: 2rem" class="font-weight-light align-middle">Sign in</div>
                         <br>
                         <input type="text" name="username" placeholder="Username"/>
                         <input type="password" name="password" placeholder="Password"/>
@@ -47,54 +49,61 @@
         </div>
         <script src="/assets/js/unauth.js"></script>
     {% else %}
-    <div class="container-fluid clearfix">
-        <div class="row" style=" height: 100vh;">
-            <div class="col-md-9">
-                <div style="display: table;">
-                    <div style="display: table-cell; width: 30vw"> <!-- left table -->
-                        <div class="row"> <!-- logo and name -->
-                            <div class="col-md-12 ">
-                            <center>
-                             <img src="./assets/images/logo.png">
-                             <span class="font-weight-light d-none d-lg-inline align-middle" style="font-size: 2rem; color: #ffffff;">
-                                Margelet
-                            </span>
-                            </center>
-                            </div>
-                        </div>
-                        
-                        <div class="row mt-3"> <!-- username plank -->
-                            <div class="col-lg-12">
-                                <span id="name" class="align-middle" style="color: #ffffff;">{{ username }}</span>
-                                &emsp;
-                                <a href="#" class="btn btn-danger logout-btn">Logout</a>
-                            </div>
-                        </div>
+    <div class="navbar" style="color: black!important; background-color: #d4d7dc;">
+        <div class="container-fluid">
+            <div class="row w-100">
+        <div class="col-3"><img src="./assets/images/logo.png">
+            <span class="font-weight-light d-none d-lg-inline align-middle" style="font-size: 1.5rem;">
+               Margelet
+           </span>
+        </div>
+        <div class="col-6">
+            <center>
+            pingus
+            </center>
+        </div>
+        <div class="col-3">
+            <div style="float: right;">
+            <span class=" align-middle">Welcome, </span>
+            <span id="name" class=" align-middle">{{ username }}</span>
+            &emsp;
+            <a href="#" class="btn btn-danger logout-btn">Logout</a>
+        </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="container clearfix">
+        <div class="row" style=" height: 92vh;">
+            <div class="col-2">
+                
+                    <div style=""> <!-- left table -->
 
-                        <div class="row ml-1 mr-1 mt-3" style="overflow: visible; max-height: 80vh;"> <!-- chats menu -->
-                            <span name="chat-list" id="clz" style="overflow: auto; max-height: 75vh;" class="pr-3 w-100 chat-list-z">
-                                <!-- <button class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">chat 1 <span class="d-none" name="chat-id"></span></button>
-                                <button class="btn btn-primary text-left mt-2 mr-2 w-100" style="height:fit-content">chat 2</button> -->
+                        <div class="" style="margin-top:1px; overflow: visible; max-height: 80vh;"> <!-- chats menu -->
+                            <span name="chat-list" id="clz" style="overflow: auto; max-height: 75vh;" class=" w-100 chat-list-z">
+                                <!-- <button class="btn btn-margelet text-left mt-2 mr-2 w-100" style="height:fit-content">chat 1 <span class="d-none" name="chat-id"></span></button>
+                                <button class="btn btn-margelet text-left mt-2 mr-2 w-100" style="height:fit-content">chat 2</button> -->
                             </span>
-                            <button type="button" class="btn btn-primary text-left mt-2 mr-3 w-100" data-toggle="modal" data-target="#myModal1">
+                            <button type="button" class="btn btn-margelet text-left w-100" data-toggle="modal" data-target="#myModal1">
                                 +Add new chat
                             </button>
                         </div>
                     </div>
-
-                    <div class="wider" style="display:table-cell; overflow: hidden; width: 50vw; height: 100vh;"> <!-- Main middle table in center -->
+            </div>
+            <div class="col-8">
+                    <div class="" style="overflow: hidden; height: 92vh;"> <!-- Main middle table in center -->
                         <div class="h-100 clearfix">
-                            <div class="chat pb-1 h-100">
-                                <div class="chat-header clearfix"> <!-- about -->
+                            <div class="chat pb-1 h-100" style="flex-flow: column; display: flex;"> 
+                                <div class="chat-header clearfix" style="flex: 0 1 auto;"> <!-- about -->
                                     <div class="chat-about clearfix">
-                                        <div class="chat-about-label">
+                                        <div class="chat-about-label ">
                                             <label name="chat-id" class="d-none"></label>
                                             <svg id="status" class="" style="width: 20px; height: 20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg"> 
                                                 <circle cx="8" cy="8" r="8"/> <!-- fill="green" -->
                                             </svg>
                                             <label name="about-name-label">Chat name</label><br>
                                             <pre name="about-label">Chat description</pre>
-                                            <button class='btn btn-primary btn-label' id="pencil" type='submit'>
+                                            <button class='btn btn-label' id="pencil" type='submit'>
                                                 <svg class='bi bi-pencil' width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
                                                     <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
                                                     <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
@@ -115,50 +124,53 @@
                                             </div>
                                             <input type="text" name="about-name-input" class="about-name-input"></input>
                                             <textarea name="about-text" placeholder ="Input information about this chat" rows="3"></textarea>
-                                            <button class="wider btn btn-primary btn-about" type="submit" style="width: 100%">
+                                            <button class=" btn btn-margelet btn-about" type="submit" style="width: 100%">
                                                 Save changes</button>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="chat-history wider" style="word-wrap: break-word; width: 50vw"> <!-- messages -->
+                                <div class="chat-history  " id="chat-field" style="word-wrap: break-word; flex: 1 1 auto;"> <!-- messages -->
                                     <ul name="messages-list">
                                     </ul>
                                 </div>
-                
-                                <div class="chat-message clearfix"> <!-- type and send area -->
-                                    <textarea class="d-inline" name="message" placeholder ="Type your message" rows="1"></textarea>
-                                    <button title="Send message" type="submit" class="rounded-right pb-1">
-                                        <svg class="bi bi-cursor-fill align-top" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
-                                        </svg>
-                                    </button>
-                                    <button title="Attach file" type="attach" class="rounded-left pb-1">
-                                        <svg class="bi bi-file-earmark-plus align-top" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <!-- style="position: fixed; bottom: 0;" -->
+                                <div class="chat-message clearfix " style="flex: 0 1 40px;" > <!-- type and send area -->
+                                    <div class="btn-group w-100">
+                                    <textarea class="d-inline" name="message" placeholder ="Type your message" rows="1" style="border-top-left-radius:0.325rem;border-bottom-left-radius:0.325rem"></textarea>
+                                    <button title="Attach file" type="attach" class=" pb-1" height="52px">
+                                        <svg class="bi bi-file-earmark-plus align-top" width="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M9 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5v-1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h5v2.5A1.5 1.5 0 0 0 10.5 6H13v2h1V6L9 1z"/>
                                             <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
                                             <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
                                             </svg>
                                     </button>
+                                    <button title="Send message" type="submit" class="pb-1" style="border-top-right-radius:0.325rem;border-bottom-right-radius:0.325rem">
+                                        <svg class="bi bi-cursor-fill align-top" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
+                                        </svg>
+                                    </button>
+                                    
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                
             </div>
 
-            <div class="col-md-3 mt-3"> <!-- right table for participants -->
+            <div class="col-2"> <!-- right table for participants -->
                 <div class="col-md-12">
-                <div class="row" style="color: #ffffff; overflow:visible;  max-height: 90vh;">
+                <div class="row" style="margin-top:1px; color: #6a7480!important; overflow:visible;  max-height: 90vh;">
                     <span name="chatters" class="w-100" style="overflow: auto; max-height: 85vh;"> 
-                        <!--<button type="button" class="btn btn-primary text-left w-100 mt-3">test</button>
-                        <button type="button" class="btn btn-primary text-left w-100 mt-3">test2</button> -->
-                        No users
+                        <!--<button type="button" class="btn btn-margelet text-left w-100 mt-3">test</button>
+                        <button type="button" class="btn btn-margelet text-left w-100 mt-3">test2</button> -->
+                        <span class="pl-2"> No users </span>
                     </span>
-                    <button name="add-users-btn" type="button" class="btn btn-primary text-left w-100 mt-3" data-toggle="modal" data-target="#myModal2">
+                    <button name="add-users-btn" type="button" class="btn btn-margelet text-left w-100" data-toggle="modal" data-target="#myModal2">
                         +Add users
                     </button>
-                    <button name="rem-users-btn" type="button" class="btn btn-primary text-left w-100 mt-3" data-toggle="modal" data-target="#myModal3">
+                    <button name="rem-users-btn" type="button" class="btn btn-margelet text-left w-100" data-toggle="modal" data-target="#myModal3">
                         -Remove users
                     </button>
                 </div>
@@ -200,7 +212,7 @@
                 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button name="add-chat" type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+                    <button name="add-chat" type="button" class="btn btn-margelet" data-dismiss="modal">Add</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
                 
@@ -221,7 +233,7 @@
             
             <!-- Modal body -->
             <div class="modal-body" name="new-chatters" id="new-chatters">
-                <button type="button" class="btn btn-primary text-left w-100 mt-3">
+                <button type="button" class="btn btn-margelet text-left w-100 mt-3">
                     <span class="spinner-border spinner-border-sm"></span>
                     Loading
                 </button>
@@ -248,7 +260,7 @@
         
         <!-- Modal body -->
         <div class="modal-body" name="rem-chatters" id="rem-chatters">
-            <button type="button" class="btn btn-primary text-left w-100 mt-3">
+            <button type="button" class="btn btn-margelet text-left w-100 mt-3">
                 <span class="spinner-border spinner-border-sm"></span>
                 Loading
             </button>

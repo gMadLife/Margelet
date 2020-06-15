@@ -54,8 +54,10 @@ $(document).ready(() => {
     console.log("Event chat history");
     clearMessages();
     for (let message of messages) {
-      addMessage(message);
+      addMessage(message, false);
     }
+    var chatToScroll = document.getElementById("chat-field");
+    chatToScroll.scrollTop = chatToScroll.scrollHeight;
   });
 
   // Submit text message ===============================================================================================
@@ -205,7 +207,7 @@ $(document).ready(() => {
       .html();
   }
 
-  function addMessage(message) {
+  function addMessage(message, scrollChat = true) {
     if(currentChat() != message.chat) return;
 
     message.date = new Date(message.date).toLocaleString();
@@ -239,14 +241,22 @@ $(document).ready(() => {
     }
 
     $(html)
-      .hide()
+      //.hide()
       .appendTo(".chat-history ul")
       .slideDown(200);
 
-    //$(".chat-history").animate(
-    //  { scrollTop: $(".chat-history")[0].scrollHeight },
-    //  1000
-    //);
+    if (scrollChat) {
+      $(".chat-history").animate(
+      { scrollTop: $(".chat-history")[0].scrollHeight },
+      500
+      );
+    }  
+    // } else {
+    //   var chatToScroll = document.getElementById("chat-field");
+    //   chatToScroll.scrollTop = chatToScroll.scrollHeight;
+    // }
+    
+    // // 
   }
 
 
@@ -293,7 +303,7 @@ $(document).ready(() => {
     var html = null;
 
     for (let user of users) {
-      html = `<button type="button" class="user-btn btn btn-primary text-left w-100 mt-3">${user}</button>`;
+      html = `<button type="button" class="user-btn btn btn-margelet text-left w-100">${user}</button>`;
       $(html)
         .appendTo("span[name='chatters']");
     }
@@ -320,7 +330,7 @@ $(document).ready(() => {
     //Assign different attributes to the element. 
     element.textContent = encodeHTML(chat.title);
     element.id = chat._id;
-    element.classList = "chat-btn btn btn-primary text-left mt-2 pr-2 w-100";
+    element.classList = "chat-btn btn btn-margelet text-left pr-2 w-100";
 
 
     element.onclick = function() { // Note this is a function
@@ -362,7 +372,7 @@ $(document).ready(() => {
         //Assign different attributes to the element. 
         element.textContent = encodeHTML(user);
         element.name = encodeHTML(user);
-        element.classList = "new-user-btn btn btn-primary text-left w-100 mt-2";
+        element.classList = "new-user-btn btn btn-margelet text-left w-100";
     
         var newUserList = oldUserList.slice(0);
     
@@ -380,7 +390,7 @@ $(document).ready(() => {
     
         var foo = document.getElementById("new-chatters");
         foo.appendChild(element);
-        // html = <button type="button" name="${user}" class="new-user-btn btn btn-primary text-left w-100 mt-3">${user}</button>;
+        // html = <button type="button" name="${user}" class="new-user-btn btn btn-margelet text-left w-100 mt-3">${user}</button>;
         // $(html)
         //   .appendTo("div[name='new-chatters']");
         }) (user, oldUserList);
@@ -411,7 +421,7 @@ $(document).ready(() => {
       
         element.textContent = value;
         element.name = value;
-        element.classList = "rem-user-btn btn btn-primary text-left w-100 mt-2";
+        element.classList = "rem-user-btn btn btn-margelet text-left w-100 mt-2";
   
         var newUserList = oldUserList.slice(0);
 

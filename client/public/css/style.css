@@ -7,18 +7,18 @@
 body {
     /*background: rgb(110,0,93);
     background: linear-gradient(to top left, rgba(110,0,93,1) 0%, rgba(208,114,213,1) 50%, rgba(255,255,255,1) 100%);*/
-    background: #091f36;
-    background: -webkit-linear-gradient(to left, #0f2862, #091f36);
-    background: linear-gradient(to left,  #0f2862, #091f36);
+    background: #e3e5e8;
+    background: -webkit-linear-gradient(to left, #e3e5e8, #e3e5e8);
+    background: linear-gradient(to left,  #e3e5e8, #e3e5e8);
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
-    margin: 2% auto;
+    /*margin: 2% auto;
     /* width: 760px; */
-    background: #444753;
+    background: #f2f3f5;
 }
 
 .users-list {
@@ -62,7 +62,7 @@ body {
     color: #92959E;
 }
 .chat, .room {
-    background: #F2F5F8;
+    background: #ffffff;
 }
 .chat .chat-header, .room .room-header {
     padding: 20px;
@@ -97,7 +97,7 @@ body {
     padding: 10px 30px 20px;
     border-bottom: 2px solid white;
     overflow-y: scroll;
-    max-height: 70vh;
+    max-height: 76vh;
 }
 .chat .chat-history .message-data {
     margin-bottom: 15px;
@@ -111,7 +111,7 @@ body {
     color: black;
     padding: 18px 20px;
     line-height: 26px;
-    font-size: 16px;
+    font-size: 0.8rem;
     margin-bottom: 30px;
     /*width: 90%;*/
     position: relative;
@@ -144,9 +144,9 @@ body {
     border: none;
     padding: 10px 20px;
     font: 14px/22px "Roboto", Arial, sans-serif;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
     resize: none;
-    border-radius: 10px; 
+    /*border-radius: 10px; */
 }
 
 .online, .offline, .me {
@@ -318,18 +318,18 @@ ul {
     float: right;
     text-transform: uppercase;
     outline: 0;
-    background: #007bff;
+    background: #f2f3f5;
     border: 0;
     padding: 15px;
-    color: #FFFFFF;
+    color: #6a7480;
     font-size: 14px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
 }
 button:hover:enabled, button:active, button:focus {
-    background: #004997;
-    border-color: #007bff;
+    background: #d4d7dc;
+    /*border-color: #007bff;*/
 }
 a.rooms-btn:hover:enabled, a.rooms-btn:active, a.rooms-btn:focus {
     background:#004997;
@@ -426,8 +426,8 @@ pre[name="about-label"] {
 }
 
 #pencil:hover {
-    background-color: #007bff;
-    border-color: #004792;
+    background-color: #d4d7dc;
+    border-color: #d4d7dc;
     color: #FFFFFF;
 }
 
@@ -460,4 +460,37 @@ textarea[name="new-text"] {
 
 .status-2 {
     fill: red;
+}
+
+.btn{
+    font-size: 0.7rem;
+}
+
+.col-2 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.col-8 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.btn-margelet {
+    color:#6a7480!important;
+    margin-top: -1px!important;
+    border: 2px solid white!important;
+    border-radius: 0px!important;
+    background-color: #f2f3f5!important;
+}
+
+.btn-margelet:hover {
+    color:#6a7480!important;
+    border: 2px solid #9d9d9d!important;
+    border-radius: 0px!important;
+    background-color: #d4d7dc!important;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
