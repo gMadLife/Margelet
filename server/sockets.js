@@ -56,18 +56,17 @@ module.exports = io => {
       //ChatsModel.exists({ id: chatId, users: socket.username }, (err, exists) => {
       //  if (err || !exists) return;
 
-        MessagesModel.find({ chat: chatId })
-          .sort({ date: -1 })
-          .limit(50)
-          .sort({ date: 1 })
-          .lean()
-          .exec((err, messages) => {
-          if (err) return;
+      MessagesModel.find({ chat: chatId })
+        .sort({ date: -1 })
+        .limit(50)
+        .sort({ date: 1 })
+        .lean()
+        .exec((err, messages) => {
+        if (err) return;
           
-          socket.emit("chatHistory", chatId, messages);
-        });
+        socket.emit("chatHistory", chatId, messages);
       });
-    //});
+    });
 
     socket.on("getChat", (chatId) => {
       if (!socket.username) return;
