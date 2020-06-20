@@ -99,9 +99,9 @@ body {
     overflow-y: scroll;
     max-height: 76vh;
 }
-.chat .chat-history .message-data {
-    /* margin-bottom: 15px; */
-}
+/* .chat .chat-history .message-data {
+    margin-bottom: 15px;
+} */
 .chat .chat-history .message-data-time {
     color: #a8aab1;
     padding-left: 6px;
