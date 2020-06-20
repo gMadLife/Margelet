@@ -430,7 +430,10 @@ $(document).ready(() => {
 
         element.onclick = function() {
           var newUserList = [...oldUserList];
+          newUserList.push( document.getElementById("name").textContent );
           newUserList.splice( newUserList.indexOf(value, 0) , 1);
+          newUserList.sort();
+
           var chat = {
             users: newUserList,
             _id: currentChat(),
