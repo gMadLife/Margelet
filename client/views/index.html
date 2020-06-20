@@ -94,7 +94,7 @@
                     <div class="" style="overflow: hidden; height: 92vh;"> <!-- Main middle table in center -->
                         <div class="h-100 clearfix">
                             <div class="chat pb-1 h-100" style="flex-flow: column; display: flex;"> 
-                                <div class="chat-header clearfix" style="flex: 0 1 auto;"> <!-- about -->
+                                <div class="chat-header clearfix border-bottom" style="flex: 0 1 auto;"> <!-- about -->
                                     <div class="chat-about clearfix">
                                         <div class="chat-about-label ">
                                             <label name="chat-id" class="d-none"></label>
@@ -111,7 +111,7 @@
                                         </div>
 
                                         <div class="d-none chat-about-description" style="font: 14px/22px 'Roboto', Arial, sans-serif">
-                                            <div class="form-check-inline">
+                                            <div class="form-check-inline mb-2">
                                                 <label class="form-check-label" for="radio1">
                                                   <input type="radio" class="form-check-input mx-1" id="radio1" name="status-rb" value="0" checked>In work
                                                 </label>
@@ -135,9 +135,9 @@
                                     </ul>
                                 </div>
                                 <!-- style="position: fixed; bottom: 0;" -->
-                                <div class="chat-message clearfix " style="flex: 0 1 40px;" > <!-- type and send area -->
+                                <div class="chat-message clearfix border-top" style="flex: 0 1 40px;" > <!-- type and send area -->
                                     <div class="btn-group w-100">
-                                    <textarea class="d-inline" name="message" placeholder ="Type your message" rows="1" style="border-top-left-radius:0.325rem;border-bottom-left-radius:0.325rem"></textarea>
+                                    <textarea class="d-inline" id="messageField" name="message" placeholder ="Type your message" rows="1" style="border-top-left-radius:0.325rem;border-bottom-left-radius:0.325rem"></textarea>
                                     <button title="Attach file" type="attach" class=" pb-1" height="52px">
                                         <svg class="bi bi-file-earmark-plus align-top" width="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M9 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5v-1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h5v2.5A1.5 1.5 0 0 0 10.5 6H13v2h1V6L9 1z"/>
@@ -145,7 +145,7 @@
                                             <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
                                             </svg>
                                     </button>
-                                    <button title="Send message" type="submit" class="pb-1" style="border-top-right-radius:0.325rem;border-bottom-right-radius:0.325rem">
+                                    <button title="Send message" id="send-msg" type="submit" class="pb-1" style="border-top-right-radius:0.325rem;border-bottom-right-radius:0.325rem">
                                         <svg class="bi bi-cursor-fill align-top" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
                                         </svg>
@@ -289,3 +289,5 @@
 
 </body>
 </html>
+
+<!-- <img src="assets/images/no-avatar.png" class="rounded-circle" style="width: 30px; height: 30px;"> -->

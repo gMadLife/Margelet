@@ -197,7 +197,7 @@ body {
 .form {
     position: relative;
     z-index: 1;
-    background: #091f36;
+    background: #f2f3f5;
     max-width: 400px;
     margin: 0 auto 100px;
     padding-left: 45px;
@@ -230,19 +230,21 @@ body {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #0f2862; /*0f2862 091f36 #4f5f76*/
+    background: #e3e5e8; /*0f2862 091f36 #4f5f76*/
     border-radius: 10px;
     width: 100%;
-    border: 0;
+    border: 1px solid #d4d7dc;
     padding: 15px;
-    color: #FFFFFF;
+    color: #6a7480;
     font-size: 14px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
 }
 .form button:hover:enabled,.form button:active,.form button:focus {
-    background: #4f5f76;
+    color:#6a7480!important;
+    border: 1px solid #9d9d9d;
+    background: #d4d7dc;
 }
 .form .message, .room-create .message {
     margin: 15px 0 0;
@@ -250,9 +252,14 @@ body {
     font-size: 12px;
 }
 .form .message a {
-    color: #0f2862;
+    color: #212529;
     text-decoration: none;
 }
+.form .message a:hover {
+    color: #212529;
+    text-decoration: underline #212529;
+}
+
 .form .register-form {
     display: none;
 }
@@ -297,7 +304,7 @@ ul {
     width: 80%;
 }
 .form {
-    background-color: rgb(236, 242, 248);
+    background-color: #f2f3f5;
 }
 
 .form input {
@@ -386,7 +393,7 @@ button:disabled {
     display: block;
     width: 100%;
     border: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
     font: 14px/22px "Roboto", Arial, sans-serif;
     margin-bottom: 10px;
     resize: none;
@@ -478,8 +485,8 @@ textarea[name="new-text"] {
 
 .btn-margelet {
     color:#6a7480!important;
-    margin-top: -1px!important;
-    border: 2px solid white!important;
+    margin-top: -0px!important;
+    border: 1px solid #dee2e6!important;
     border-radius: 0px!important;
     background-color: #f2f3f5!important;
 }

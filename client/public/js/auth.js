@@ -212,7 +212,9 @@ $(document).ready(() => {
 
     message.date = new Date(message.date).toLocaleString();
     message.username = encodeHTML(message.username);
-    message.content = encodeHTML(message.content);
+    /* message.content = encodeHTML(message.content); */
+
+    message.content = (message.content).split("\n").join("<br>");
 
     var html = null;
 
@@ -224,6 +226,7 @@ $(document).ready(() => {
           <span class="message-data-time">${message.date}</span>
         </div>
         <div class="message my-message" dir="auto">
+
           <a href="./uploads/${message.file}" download="${message.content}">${message.content}</a>
         </div>
       </li>
@@ -446,6 +449,14 @@ $(document).ready(() => {
     }
     
     socket.emit("getUserList");
+  });
+
+  var inputField = document.getElementById("messageField");
+  inputField.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13 && !event.shiftKey) {
+      event.preventDefault();
+      document.getElementById("send-msg").click();
+    }
   });
 
 });
