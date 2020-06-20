@@ -52,18 +52,18 @@
     <div class="navbar" style="color: black!important; background-color: #d4d7dc;">
         <div class="container-fluid">
             <div class="row w-100">
-        <div class="col-3"><img src="./assets/images/logo.png">
+        <div class="col-3"><img src="./assets/images/logo.png" style="margin-top: -4px; margin-bottom: -4px;">
             <span class="font-weight-light d-none d-lg-inline align-middle" style="font-size: 1.5rem;">
                Margelet
            </span>
         </div>
         <div class="col-6">
             <center>
-            pingus
+            <!---->
             </center>
         </div>
-        <div class="col-3">
-            <div style="float: right;">
+        <div class="col-3" style="margin-right: 0;">
+            <div style="float: right; margin-right: -15px!Important;">
             <span class=" align-middle">Welcome, </span>
             <span id="name" class=" align-middle">{{ username }}</span>
             &emsp;
@@ -137,7 +137,7 @@
                                 <!-- style="position: fixed; bottom: 0;" -->
                                 <div class="chat-message clearfix border-top" style="flex: 0 1 40px;" > <!-- type and send area -->
                                     <div class="btn-group w-100">
-                                    <textarea class="d-inline" id="messageField" name="message" placeholder ="Type your message" rows="1" style="border-top-left-radius:0.325rem;border-bottom-left-radius:0.325rem"></textarea>
+                                    <textarea class="d-inline border-right-0" id="messageField" name="message" placeholder ="Type your message" rows="1" style="border-top-left-radius:0.325rem;border-bottom-left-radius:0.325rem; border: 1px solid #f2f3f5"></textarea>
                                     <button title="Attach file" type="attach" class=" pb-1" height="52px">
                                         <svg class="bi bi-file-earmark-plus align-top" width="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M9 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5v-1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h5v2.5A1.5 1.5 0 0 0 10.5 6H13v2h1V6L9 1z"/>

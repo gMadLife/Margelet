@@ -100,7 +100,7 @@ body {
     max-height: 76vh;
 }
 .chat .chat-history .message-data {
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
 }
 .chat .chat-history .message-data-time {
     color: #a8aab1;
@@ -109,7 +109,7 @@ body {
 }
 .chat .chat-history .message {
     color: black;
-    padding: 18px 20px;
+    /* padding: 18px 20px; */
     line-height: 26px;
     font-size: 0.8rem;
     margin-bottom: 30px;
@@ -133,8 +133,8 @@ body {
 */
 .chat .chat-history .my-message {
     background: #ffffff;    /*0f2862 091f36 #4f5f76*/
-    border: 2px solid #4f5f76;
-    border-radius: 10px; 
+    /* border: 2px solid #4f5f76;
+    border-radius: 10px;  */
 }
 .chat .chat-message, .room .room-create {
     padding: 20px;
@@ -498,6 +498,18 @@ textarea[name="new-text"] {
     background-color: #d4d7dc!important;
 }
 
+.message-data-name {
+    font-weight: 700;
+}
+
+
 ::-webkit-scrollbar {
-    display: none;
+    background-color: transparent;
+    width: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+    border-radius: 15px;
 }
