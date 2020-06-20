@@ -343,10 +343,12 @@ a.rooms-btn:hover:enabled, a.rooms-btn:active, a.rooms-btn:focus {
     border-color: #007bff;
 }
 a.logout-btn{
-    background-color: rgb(226, 98, 92);
+    background-color: #d4d7dc;
+    border: 2px solid #dee2e6!important;
 }
 a.logout-btn:hover:enabled, a.logout-btn:active, a.logout-btn:focus {
-    background-color: rgb(245, 106, 99);
+    color:#6a7480!important;
+    border: 2px solid #9d9d9d!important;
 }
 .controls {
     float: right;
@@ -470,7 +472,7 @@ textarea[name="new-text"] {
 }
 
 .btn{
-    font-size: 0.7rem;
+    font-size: 0.8rem!important;
 }
 
 .col-2 {
