@@ -42,7 +42,7 @@
                         <input type="text" name="username" placeholder="Username"/>
                         <input type="password" name="password" placeholder="Password"/>
                         <button type="submit">LET ME IN</button>
-                        <p class="message">Not registered? <a href="#">Create an account</a></p>
+                        <!--<p class="message">Not registered? <a href="#">Create an account</a></p>-->
                     </form>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                 
                     <div> <!-- left table -->
 
-                        <div style="margin-top:1px; overflow: visible; max-height: 80vh;"> <!-- chats menu -->
+                        <div id="chats-menu-bar" style="margin-top:1px; overflow: visible; max-height: 80vh;"> <!-- chats menu -->
                             <span name="chat-list" id="clz" style="overflow: auto; max-height: 75vh;" class=" w-100 chat-list-z">
                                 <!-- <button class="btn btn-margelet text-left mt-2 mr-2 w-100" style="height:fit-content">chat 1 <span class="d-none" name="chat-id"></span></button>
                                 <button class="btn btn-margelet text-left mt-2 mr-2 w-100" style="height:fit-content">chat 2</button> -->
@@ -161,7 +161,7 @@
 
             <div class="col-2"> <!-- right table for participants -->
                 <div class="col-md-12">
-                <div class="row" style="margin-top:1px; color: #6a7480!important; overflow:visible;  max-height: 90vh;">
+                <div id="users-menu-bar" class="row" style="margin-top:1px; color: #6a7480!important; overflow:visible;  max-height: 90vh;">
                     <span name="chatters" class="w-100" style="word-wrap: break-word; overflow: auto; max-height: 85vh;"> 
                         <!--<button type="button" class="btn btn-margelet text-left w-100 mt-3">test</button>
                         <button type="button" class="btn btn-margelet text-left w-100 mt-3">test2</button> -->

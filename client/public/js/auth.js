@@ -149,6 +149,8 @@ $(document).ready(() => {
       document.getElementById("radio3").checked = true;
     }
 
+    $("#chats-menu-bar :button").attr("disabled", true);
+    $("#users-menu-bar :button").attr("disabled", true);
   });
   // same =====================
   $(".chat-about-description button").on("click", e => {
@@ -194,6 +196,9 @@ $(document).ready(() => {
       }
       socket.emit("submitEditChat", chat);
     }
+
+    $("#chats-menu-bar :button").attr("disabled", false);
+    $("#users-menu-bar :button").attr("disabled", false);
   });
 
   function clearMessages() {

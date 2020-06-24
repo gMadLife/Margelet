@@ -389,6 +389,7 @@ a.logout-btn:hover:enabled, a.logout-btn:active, a.logout-btn:focus {
 }
 button:disabled {
     background: gray;
+    color: black;
 }
 
 .chat-about textarea {
