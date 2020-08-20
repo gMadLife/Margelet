@@ -15,7 +15,7 @@
   "author": "Raccoon & Gopher",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.0",
